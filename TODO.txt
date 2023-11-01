@@ -1,0 +1,3 @@
+1. Get these working:
+    a. Spotify authentication
+    b. Create playlist
