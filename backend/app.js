@@ -14,6 +14,9 @@ const CLIENT_ID = '642dc66687df41d5bd1a31d677e8f0a6';
 const REDIRECT_URI = 'http://localhost:3001/auth/callback';
 const SPOTIFY_TOKEN_URL = 'https://accounts.spotify.com/api/token';
 
+app.use(cors());
+
+
 app.use(session({
     secret: secretKey,
     resave: false,
@@ -94,21 +97,20 @@ app.get('/auth/callback', (req, res) => {
 
 app.get('/profile', (req, res) => {
 // Retrieve the access token from the session
-const accessToken = req.session.accessToken;
-console.log(accessToken);
+    const accessToken = req.session.accessToken;
+    // console.log(accessToken);
 
-if (!accessToken) {
-    return res.status(401).send('Access token not found in the session.');
-}
+    if (!accessToken) {
+        return res.status(401).send('Access token not found in the session.');
+    }
 
-// Respond with the access token as JSON
-res.json({ accessToken });
+    // Respond with the access token as JSON
+    res.json(accessToken);
 });
 
 
 
 // Enable CORS for all routes
-app.use(cors());
 
 // Define your API routes here
 app.get('/api/data', (req, res) => {

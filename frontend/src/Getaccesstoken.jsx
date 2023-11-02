@@ -7,7 +7,7 @@ export default function GetAccessToken(){
     function GetToken(){
 
 
-        fetch('/profile', {
+        fetch('http://localhost:3001/profile', {
             method: 'GET',
           })
             .then(response => {
@@ -18,10 +18,11 @@ export default function GetAccessToken(){
               return response.json();
             })
             .then(data => {
+                console.log(data);
               if (data && data.accessToken) {
                 // Use the access token from the response
                 const accessToken = data.accessToken;
-                console.log('Access Token:', accessToken);
+                console.log(accessToken);
                 
                 // You can now use the access token for making authorized requests to Spotify or other APIs.
               }
