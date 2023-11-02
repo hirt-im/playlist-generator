@@ -1,6 +1,5 @@
 const express = require('express');
 const cors = require('cors'); // Import the cors module
-const app = express();
 const session = require('express-session');
 const crypto = require('crypto');
 const https = require('https');
@@ -14,7 +13,14 @@ const CLIENT_ID = '642dc66687df41d5bd1a31d677e8f0a6';
 const REDIRECT_URI = 'http://localhost:3001/auth/callback';
 const SPOTIFY_TOKEN_URL = 'https://accounts.spotify.com/api/token';
 
-app.use(cors());
+const app = express();
+
+// app.use(cors());
+
+//WHY DONT THIS WORK
+app.use(cors({
+    origin: 'http://localhost:5173', // Set to the frontend's URL
+  }));
 
 
 app.use(session({
@@ -22,6 +28,8 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
   }));
+
+
 
 //handle Spotify Sign In
 app.get('/auth/callback', (req, res) => {
