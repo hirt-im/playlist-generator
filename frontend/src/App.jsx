@@ -4,6 +4,7 @@ import ButtonData from './Component'
 import SpotifySignIn from './SpotifySignIn'
 import SpotifySignOut from './SpotifySignOut'
 import GetAccessToken from './Getaccesstoken'
+import Playlist from './Playlist'
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
       <SpotifySignIn />
       <SpotifySignOut />
       <GetAccessToken />
+      <Playlist />
     </>
   )
 }
