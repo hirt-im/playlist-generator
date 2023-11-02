@@ -10,7 +10,7 @@ dotenv.config(); //
 const axios = require('axios');
 
 
-const secretKey = 'cfa025f29abecaac90cc39a3f6faf2fe1a78c259d963abcef83e4bb057259bb8';
+const SECRET_KEY = process.env.SECRET_KEY;
 const CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET;
 const CLIENT_ID = '642dc66687df41d5bd1a31d677e8f0a6';
 const REDIRECT_URI = 'http://localhost:3001/auth/callback';
@@ -34,7 +34,7 @@ let accessToken = null;
 // app.use(cors());
 
 app.use(session({
-  secret: secretKey,
+  secret: SECRET_KEY,
   resave: false,
   saveUninitialized: true
 }));
