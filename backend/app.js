@@ -256,21 +256,21 @@ app.get('/api/createPlaylistAxios', async (req, res) => {
     });
 
     const playlistId = createPlaylistResponse.data.id;
-
     // Define the song URIs
     const songURIs = [
-      'spotify:track:4iV5W9uYEdYUVa79Axb7Rh',
-      'spotify:track:6zHsJDzQ2n2CJLsU4n5WbR',
-      'spotify:track:1A2GTWGtFfWp7KSQTwFvXh',
+      'spotify:track:4oSjxxsZnPHZLOnkPri7Po',
+      'spotify:track:4aQ8mFkZU6dmHaZOOKdscc',
+      'spotify:track:5pZVsZ8TOGly1KnYFmZ61B',
       // Add more song URIs as needed
     ];
+    console.log(songURIs.join(','))
 
     // Add songs to the playlist
-    await axios.post(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, { uris: songURIs }, {
+    await axios.post(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, songURIs, {
       headers: {
         'Authorization': `Bearer ${accessToken.access_token}`,
         'Content-Type': 'application/json',
-      },
+      }
     });
 
     res.status(200).json({ message: 'Playlist created and songs added successfully' });
