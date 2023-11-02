@@ -244,6 +244,7 @@ app.get('/api/createPlaylistAxios', async (req, res) => {
     // Define the playlist details
     const playlistData = {
       name: 'My Epic Playlist',
+      description: 'Testing description for the playlist.',
       public: false, // Set to true for a public playlist
     };
 
@@ -256,6 +257,7 @@ app.get('/api/createPlaylistAxios', async (req, res) => {
     });
 
     const playlistId = createPlaylistResponse.data.id;
+
     // Define the song URIs
     const songURIs = [
       'spotify:track:4oSjxxsZnPHZLOnkPri7Po',
@@ -263,7 +265,6 @@ app.get('/api/createPlaylistAxios', async (req, res) => {
       'spotify:track:5pZVsZ8TOGly1KnYFmZ61B',
       // Add more song URIs as needed
     ];
-    console.log(songURIs.join(','))
 
     // Add songs to the playlist
     await axios.post(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, songURIs, {
