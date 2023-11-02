@@ -7,6 +7,8 @@ const http = require('http');
 const querystring = require('querystring');
 const dotenv = require('dotenv');
 dotenv.config(); //
+const axios = require('axios');
+
 
 const secretKey = 'cfa025f29abecaac90cc39a3f6faf2fe1a78c259d963abcef83e4bb057259bb8';
 const CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET;
@@ -139,6 +141,14 @@ app.get('/profile', (req, res) => {
 
 //Create spotify playlist
 app.get('/api/createPlaylist', (req, res) => {
+
+  const songURIs = [
+    'spotify:track:4iV5W9uYEdYUVa79Axb7Rh', // Example song 1
+    'spotify:track:6zHsJDzQ2n2CJLsU4n5WbR', // Example song 2
+    'spotify:track:1A2GTWGtFfWp7KSQTwFvXh', // Example song 3
+    // Add more song URIs as needed
+  ];
+
   // Replace with a valid access token
   console.log('create playlist', accessToken);
   // return;
@@ -159,6 +169,7 @@ app.get('/api/createPlaylist', (req, res) => {
     headers: {
       'Authorization': `Bearer ${accessToken.access_token}`,
       'Content-Type': 'application/json',
+      'Content-Length': Buffer.byteLength(payload),
     },
   };
 
@@ -173,16 +184,100 @@ app.get('/api/createPlaylist', (req, res) => {
     resp.on('end', () => {
       if (resp.statusCode === 201) {
         const playlistId = JSON.parse(data).id;
-        res.status(200).send(`Created playlist with ID: ${playlistId}`);
+        console.log('playlistid: ', playlistId);
+        // Step 2: Add Songs to the Playlist
+        const addSongsData = { uris: songURIs };
+        const addSongsDataString = JSON.stringify(addSongsData);
+
+        const addSongsOptions = {
+          hostname: 'api.spotify.com',
+          port: 443,
+          path: `/v1/playlists/${playlistId}/tracks`,
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Content-Length': Buffer.byteLength(addSongsDataString),
+            'Authorization': `Bearer ${accessToken.access_token}`,
+          },
+        };
+
+        const addSongsReq = http.request(addSongsOptions, (addSongsRes) => {
+          let addSongsData = '';
+
+          addSongsRes.on('data', (chunk) => {
+            addSongsData += chunk;
+          });
+
+          addSongsRes.on('end', () => {
+            if (addSongsRes.statusCode === 201) {
+              res.status(200).json({ message: 'Playlist created and songs added successfully' });
+            } else {
+              console.error('Error adding songs:', addSongsData);
+              res.status(500).json({ error: 'Failed to add songs to the playlist' });
+            }
+          });
+        });
+
+        addSongsReq.write(addSongsDataString);
+        addSongsReq.end();
       } else {
         console.error('Error creating playlist:', data);
-        res.status(resp.statusCode).send('Failed to create the playlist.');
+        res.status(500).json({ error: 'Failed to create playlist' });
       }
     });
-  });
+  
+
+      }
+    );
+  
 
   reqSpotify.write(payload);
   reqSpotify.end();
+});
+
+
+//Trying axios
+app.get('/api/createPlaylistAxios', async (req, res) => {
+  try {
+    // Replace with a valid access token
+
+    // Define the playlist details
+    const playlistData = {
+      name: 'My Epic Playlist',
+      public: false, // Set to true for a public playlist
+    };
+
+    // Create a playlist
+    const createPlaylistResponse = await axios.post('https://api.spotify.com/v1/me/playlists', playlistData, {
+      headers: {
+        'Authorization': `Bearer ${accessToken.access_token}`,
+        'Content-Type': 'application/json',
+      },
+    });
+
+    const playlistId = createPlaylistResponse.data.id;
+
+    // Define the song URIs
+    const songURIs = [
+      'spotify:track:4iV5W9uYEdYUVa79Axb7Rh',
+      'spotify:track:6zHsJDzQ2n2CJLsU4n5WbR',
+      'spotify:track:1A2GTWGtFfWp7KSQTwFvXh',
+      // Add more song URIs as needed
+    ];
+
+    // Add songs to the playlist
+    await axios.post(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, { uris: songURIs }, {
+      headers: {
+        'Authorization': `Bearer ${accessToken.access_token}`,
+        'Content-Type': 'application/json',
+      },
+    });
+
+    res.status(200).json({ message: 'Playlist created and songs added successfully' });
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ error: 'Failed to create playlist or add songs' });
+  }
 });
 
 
