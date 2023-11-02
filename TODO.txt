@@ -1,3 +1,8 @@
+0. Figure out why you get 401 unauthorized on getaccesstoken
+
+
 1. Get these working:
     a. Spotify authentication
     b. Create playlist
+
+
