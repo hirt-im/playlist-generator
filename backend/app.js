@@ -319,7 +319,26 @@ app.post('/api/gpt', async (req, res) => {
       });
       console.log(chatCompletion.choices);
 
+
+      // turn response into array of songs
+      const lines = chatCompletion.choices[0].message.content.split('\n');
+      const songs = [];
+
+      lines.forEach((line) => {
+        const match = line.match(/"\s*(.*?)\s*" by (.*)$/);
+        if (match) {
+          const songName = match[1];
+          const artist = match[2];
+          songs.push(`${songName} by ${artist}`);
+        }
+      })
+
+      console.log(songs);
+
     }
+      
+
+    
     catch (error) {
       console.error(error);
       res.status(500).json({ error: 'An error occurred while processing the request.' });
