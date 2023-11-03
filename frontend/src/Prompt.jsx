@@ -1,4 +1,4 @@
-import { Input, Box, FormControl, Stack, Button  } from '@chakra-ui/react'
+import { Input, Box, FormControl, Stack, Button, Text  } from '@chakra-ui/react'
 import { useState, useEffect } from 'react';
 import {
     Slider,
@@ -51,7 +51,7 @@ export default function Prompt(){
                     onChange={(e) => setInputValue(e.target.value)}
                 />
                 <Button colorScheme="blue" onClick={handleSubmit}>
-                    Submit
+                    Create Playlist!
                 </Button>
                 <Slider
                     min={5}
@@ -61,9 +61,13 @@ export default function Prompt(){
                     onChange={(e) => {setNumSongs(e)}}
                 >
                     <SliderTrack>
-                    <SliderFilledTrack />
+                        <SliderFilledTrack />
                     </SliderTrack>
-                    <SliderThumb />
+                    <SliderThumb>
+                        <Text position='relative' top='-25px'>
+                            {numSongs}
+                        </Text>
+                    </SliderThumb>
                 </Slider>
             </Stack>
         </FormControl>
