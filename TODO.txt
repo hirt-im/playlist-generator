@@ -1,3 +1,9 @@
 1. Add option to change number of songs in playlist
 2. Add option to make public/private
 3. Display playlist after creation
+
+4. Make prompt better to produce better results
+
+Bugs:
+Sometimes it doesn't work. Creates playlist but returns empty array that should be songs.
+     Perhaps check in case song isn't on spotify or there is error finding it
