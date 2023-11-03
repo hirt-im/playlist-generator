@@ -1,8 +1,6 @@
-0. Figure out why you get 401 unauthorized on getaccesstoken
-
-
-1. Get these working:
-    a. Spotify authentication
-    b. Create playlist
-
-
+Take response from OpenAI
+    filter down to names of songs
+        find spotify URIs for those songs   
+            create playlist
+                ???
+                    Profit
