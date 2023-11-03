@@ -1,5 +1,12 @@
 import { Input, Box, FormControl, Stack, Button  } from '@chakra-ui/react'
 import { useState, useEffect } from 'react';
+import {
+    Slider,
+    SliderTrack,
+    SliderFilledTrack,
+    SliderThumb,
+    SliderMark,
+  } from '@chakra-ui/react'
 import './Prompt.css';
 
 
@@ -7,6 +14,7 @@ import './Prompt.css';
 export default function Prompt(){
     const [placeholder, setPlaceholder] = useState('Enter your prompt here');
     const [inputValue, setInputValue] = useState('');
+    const [numSongs, setNumSongs] = useState(10);
 
 
     useEffect(() => {
@@ -24,12 +32,14 @@ export default function Prompt(){
     async function handleSubmit(){
         const result = await fetch('http://localhost:3001/api/gpt', {
               method: 'POST',
-              body: JSON.stringify({inputValue}),
+              body: JSON.stringify({inputValue, numSongs}),
               headers: { 'Content-Type': 'application/json' },
             });
             const data = await result.json();
             console.log(data);
     }
+
+ 
 
     return(
         <FormControl>
@@ -43,10 +53,23 @@ export default function Prompt(){
                 <Button colorScheme="blue" onClick={handleSubmit}>
                     Submit
                 </Button>
+                <Slider
+                    min={5}
+                    max={50}
+                    step={1}
+                    value={numSongs}
+                    onChange={(e) => {setNumSongs(e)}}
+                >
+                    <SliderTrack>
+                    <SliderFilledTrack />
+                    </SliderTrack>
+                    <SliderThumb />
+                </Slider>
             </Stack>
         </FormControl>
     );
 }
+
 
 
 

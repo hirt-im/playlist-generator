@@ -344,7 +344,8 @@ const openai = new OpenAI({
 
 app.post('/api/gpt', async (req, res) => {
   const prompt = req.body.inputValue;
-  const chatInput = 'Please generate a list of 10 songs that are on Spotify with the theme of: ' + prompt;
+  const numSongs = req.body.numSongs;
+  const chatInput = 'Please generate a list of ' + numSongs + ' songs that are on Spotify with the theme of: ' + prompt;
   console.log(prompt);
 
     try{
