@@ -335,10 +335,11 @@ app.post('/api/gpt', async (req, res) => {
 
       console.log(songs);
 
-    }
-      
+      GetSongURIs(songs);
 
-    
+}
+
+      
     catch (error) {
       console.error(error);
       res.status(500).json({ error: 'An error occurred while processing the request.' });
@@ -346,6 +347,35 @@ app.post('/api/gpt', async (req, res) => {
     
     }
   );
+
+
+async function GetSongURIs(songList){
+  let songURIs = [];
+
+
+  await Promise.all(
+    songList.map(async (song) => {
+      const response = await fetch(`https://api.spotify.com/v1/search?q=${encodeURIComponent(song)}&type=track`, {
+        headers: {
+          Authorization: `Bearer ${accessToken.access_token}`,
+        },
+      });
+
+      const data = await response.json();
+      if (data.tracks.items.length > 0) {
+        songURIs.push(data.tracks.items[0].uri);
+      } else {
+        console.log('song not found');
+        // Handle the case where the song is not found
+        // You can push null or take another action as needed
+        // songURIs.push(null);
+      }
+    })
+  );
+
+  console.log(songURIs);
+};
+
 
 
 
