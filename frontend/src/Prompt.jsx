@@ -21,8 +21,14 @@ export default function Prompt(){
         return () => clearInterval(interval);
       }, []);
 
-    function handleSubmit(){
-        console.log(inputValue);
+    async function handleSubmit(){
+        const result = await fetch('http://localhost:3001/api/gpt', {
+              method: 'POST',
+              body: JSON.stringify({inputValue}),
+              headers: { 'Content-Type': 'application/json' },
+            });
+            const data = await result.json();
+            console.log(data);
     }
 
     return(

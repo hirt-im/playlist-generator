@@ -10,11 +10,19 @@ dotenv.config(); //
 const axios = require('axios');
 
 
+
+
 const SECRET_KEY = process.env.SECRET_KEY;
 const CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET;
 const CLIENT_ID = '642dc66687df41d5bd1a31d677e8f0a6';
 const REDIRECT_URI = 'http://localhost:3001/auth/callback';
 const SPOTIFY_TOKEN_URL = 'https://accounts.spotify.com/api/token';
+
+
+
+
+
+
 
 const app = express();
 
@@ -44,6 +52,8 @@ app.use(session({
 app.use(cors({
     origin: FRONTEND_URL, // Set to the frontend's URL
 }));
+
+app.use(express.json());
 
 
 
@@ -280,6 +290,63 @@ app.get('/api/createPlaylistAxios', async (req, res) => {
     res.status(500).json({ error: 'Failed to create playlist or add songs' });
   }
 });
+
+
+// const { Configuration, OpenAIApi } = require('openai');
+
+// const config = new Configuration({
+//   apiKey: CHATGPT_KEY,
+// });
+
+// const openai = new OpenAIApi(config);
+
+
+
+const OpenAI = require('openai');
+const openai = new OpenAI({
+  apiKey: process.env.CHATGPT_KEY, 
+});
+
+app.post('/api/gpt', async (req, res) => {
+  const prompt = req.body.inputValue;
+  const chatInput = 'Please generate a list of 10 songs that are on Spotify with the theme of: ' + prompt;
+  console.log(prompt);
+
+    try{
+      const chatCompletion = await openai.chat.completions.create({
+        messages: [{ role: 'user', content: chatInput }],
+        model: 'gpt-3.5-turbo',
+      });
+      console.log(chatCompletion.choices);
+
+    }
+    catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'An error occurred while processing the request.' });
+    }
+    
+    }
+  );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // Enable CORS for all routes
