@@ -7,7 +7,7 @@ import {
     SliderThumb,
     SliderMark,
   } from '@chakra-ui/react'
-import './Prompt.css';
+import './CreatePlaylistForm.css';
 
 
 
