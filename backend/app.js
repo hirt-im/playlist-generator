@@ -292,6 +292,41 @@ app.get('/api/createPlaylistAxios', async (req, res) => {
 });
 
 
+async function CreatePlaylist(name, songURIs){
+
+  try {
+    const playlistData = {
+      name: name,
+      description: 'Created using Spotify Playlist Generator by Michael Hirt',
+      public: false, // Set to true for a public playlist
+    };
+
+    // Create a playlist
+    const createPlaylistResponse = await axios.post('https://api.spotify.com/v1/me/playlists', playlistData, {
+      headers: {
+        'Authorization': `Bearer ${accessToken.access_token}`,
+        'Content-Type': 'application/json',
+      },
+    });
+
+    const playlistId = createPlaylistResponse.data.id;
+
+
+    // Add songs to the playlist
+    await axios.post(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, songURIs, {
+      headers: {
+        'Authorization': `Bearer ${accessToken.access_token}`,
+        'Content-Type': 'application/json',
+      }
+    });
+
+    return playlistId;
+
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+
 // const { Configuration, OpenAIApi } = require('openai');
 
 // const config = new Configuration({
@@ -335,7 +370,8 @@ app.post('/api/gpt', async (req, res) => {
 
       console.log(songs);
 
-      GetSongURIs(songs);
+      let songURIs = await GetSongURIs(songs);
+      CreatePlaylist(prompt, songURIs);
 
 }
 
@@ -374,6 +410,7 @@ async function GetSongURIs(songList){
   );
 
   console.log(songURIs);
+  return songURIs;
 };
 
 

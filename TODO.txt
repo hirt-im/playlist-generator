@@ -1,6 +1,2 @@
-Take response from OpenAI
-    filter down to names of songs
-        find spotify URIs for those songs   
-            create playlist
-                ???
-                    Profit
+1. Add option to change number of songs in playlist
+2. Add option to make public/private
