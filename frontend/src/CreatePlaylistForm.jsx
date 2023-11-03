@@ -11,9 +11,9 @@ import './CreatePlaylistForm.css';
 
 
 
-export default function Prompt(){
+export default function CreatePlaylistForm(){
     const [placeholder, setPlaceholder] = useState('Enter your prompt here');
-    const [inputValue, setInputValue] = useState('');
+    const [prompt, setPrompt] = useState('');
     const [numSongs, setNumSongs] = useState(10);
 
 
@@ -32,7 +32,7 @@ export default function Prompt(){
     async function handleSubmit(){
         const result = await fetch('http://localhost:3001/api/gpt', {
               method: 'POST',
-              body: JSON.stringify({inputValue, numSongs}),
+              body: JSON.stringify({prompt, numSongs}),
               headers: { 'Content-Type': 'application/json' },
             });
             const data = await result.json();
@@ -43,12 +43,12 @@ export default function Prompt(){
 
     return(
         <FormControl>
-            <Stack direction='row' spaceing={2}>
+            <Stack direction='column' spaceing={2}>
                 <Input 
                     type='text'
                     placeholder={placeholder}
-                    value={inputValue}
-                    onChange={(e) => setInputValue(e.target.value)}
+                    value={prompt}
+                    onChange={(e) => setPrompt(e.target.value)}
                 />
                 <Button colorScheme="blue" onClick={handleSubmit}>
                     Create Playlist!
