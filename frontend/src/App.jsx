@@ -6,6 +6,7 @@ import SpotifySignOut from './SpotifySignOut'
 import GetAccessToken from './Getaccesstoken'
 import Playlist from './Playlist'
 import CreatePlaylist from './CreatePlaylist'
+import Prompt from './Prompt'
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
       <Playlist />
       <CreatePlaylist />
       <ButtonData />
+      <Prompt />
     </>
   )
 }
