@@ -15,8 +15,8 @@ function App() {
       <SpotifySignIn />
       <SpotifySignOut />
       <GetAccessToken />
-      <Playlist playlistID={playlistID} />
       <CreatePlaylistForm setPlaylistID={setPlaylistID} />
+      <Playlist playlistID={playlistID} />
     </>
   )
 }
