@@ -342,6 +342,7 @@ const openai = new OpenAI({
   apiKey: process.env.CHATGPT_KEY, 
 });
 
+// Create spotify playlist, add songs to it, return playlistID to frontend
 app.post('/api/gpt', async (req, res) => {
   const prompt = req.body.prompt;
   const numSongs = req.body.numSongs;
@@ -389,6 +390,7 @@ app.post('/api/gpt', async (req, res) => {
   );
 
 
+//Get spotify song URIs from list of songs
 async function GetSongURIs(songList){
   let songURIs = [];
 

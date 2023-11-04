@@ -16,7 +16,7 @@ export default function CreatePlaylistForm(props){
     const [prompt, setPrompt] = useState('');
     const [numSongs, setNumSongs] = useState(10);
 
-
+    //Have prompt placeholder text iterate through different examples
     useEffect(() => {
         const placeholders = ['chill day at the river', 'late night drive', 'high energy electronic workout', 'soothing music to focus'];
         let currentIndex = 0;
@@ -29,42 +29,17 @@ export default function CreatePlaylistForm(props){
         return () => clearInterval(interval);
       }, []);
 
+    //Submit form to create playlist, then set playlistID to newly created playlist
     async function handleSubmit(){
         const result = await fetch('http://localhost:3001/api/gpt', {
               method: 'POST',
               body: JSON.stringify({prompt, numSongs}),
               headers: { 'Content-Type': 'application/json' },
             });
-
-
-
             const playlistID = await result.json();
             console.log(playlistID);
             props.setPlaylistID(playlistID);
-        
     }
-
-    // function handleSubmit(){
-    //     fetch('http://localhost:3001/api/gpt', {
-    //           method: 'POST',
-    //           body: JSON.stringify({prompt, numSongs}),
-    //           headers: { 'Content-Type': 'application/json' },
-    //         })
-    //         .then((response) => {
-    //             if (!response.ok) {
-    //               throw new Error('Network response was not ok');
-    //             }
-    //             return response.json();
-    //           })
-    //           .then((data) => {
-    //             console.log(data); // Log the returned value to the console
-    //             // You can use the 'data' variable here
-    //           })
-    //           .catch((error) => {
-    //             console.error('Error:', error);
-    //           });
-        
-    // }
 
  
 
