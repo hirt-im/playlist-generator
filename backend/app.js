@@ -345,7 +345,9 @@ const openai = new OpenAI({
 app.post('/api/gpt', async (req, res) => {
   const prompt = req.body.prompt;
   const numSongs = req.body.numSongs;
-  const chatInput = 'Please generate a list of ' + numSongs + ' songs that are on Spotify with the theme of: ' + prompt;
+  // const chatInput = 'Please generate a list of ' + numSongs + ' songs that are on Spotify with the theme of: ' + prompt;
+  const chatInput = 'Generate a playlist of songs that are on spotify. The theme of the playlist is: ' + prompt +'. The list should be numbered and include ' + numSongs + ' songs.';
+
   console.log(req.body.prompt);
 
     try{
@@ -372,7 +374,8 @@ app.post('/api/gpt', async (req, res) => {
       console.log(songs);
 
       let songURIs = await GetSongURIs(songs);
-      CreatePlaylist(prompt, songURIs);
+      let playlistID = await CreatePlaylist(prompt, songURIs);
+      res.json(playlistID);
 
 }
 

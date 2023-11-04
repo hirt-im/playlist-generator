@@ -7,14 +7,16 @@ import Playlist from './Playlist'
 import CreatePlaylistForm from './CreatePlaylistForm'
 
 function App() {
+  const [signedIn, setSignedIn] = useState(false);
+  const [playlistID, setPlaylistID] = useState(null);
 
   return (
     <>
       <SpotifySignIn />
       <SpotifySignOut />
       <GetAccessToken />
-      <Playlist />
-      <CreatePlaylistForm />
+      <Playlist playlistID={playlistID} />
+      <CreatePlaylistForm setPlaylistID={setPlaylistID} />
     </>
   )
 }

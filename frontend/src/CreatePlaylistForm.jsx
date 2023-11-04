@@ -11,7 +11,7 @@ import './CreatePlaylistForm.css';
 
 
 
-export default function CreatePlaylistForm(){
+export default function CreatePlaylistForm(props){
     const [placeholder, setPlaceholder] = useState('Enter your prompt here');
     const [prompt, setPrompt] = useState('');
     const [numSongs, setNumSongs] = useState(10);
@@ -35,9 +35,36 @@ export default function CreatePlaylistForm(){
               body: JSON.stringify({prompt, numSongs}),
               headers: { 'Content-Type': 'application/json' },
             });
-            const data = await result.json();
-            console.log(data);
+
+
+
+            const playlistID = await result.json();
+            console.log(playlistID);
+            props.setPlaylistID(playlistID);
+        
     }
+
+    // function handleSubmit(){
+    //     fetch('http://localhost:3001/api/gpt', {
+    //           method: 'POST',
+    //           body: JSON.stringify({prompt, numSongs}),
+    //           headers: { 'Content-Type': 'application/json' },
+    //         })
+    //         .then((response) => {
+    //             if (!response.ok) {
+    //               throw new Error('Network response was not ok');
+    //             }
+    //             return response.json();
+    //           })
+    //           .then((data) => {
+    //             console.log(data); // Log the returned value to the console
+    //             // You can use the 'data' variable here
+    //           })
+    //           .catch((error) => {
+    //             console.error('Error:', error);
+    //           });
+        
+    // }
 
  
 
