@@ -8,6 +8,7 @@ import {
     SliderMark,
   } from '@chakra-ui/react'
 import './CreatePlaylistForm.css';
+import Loading from './Loading';
 
 
 
@@ -15,6 +16,7 @@ export default function CreatePlaylistForm(props){
     const [placeholder, setPlaceholder] = useState('Enter your prompt here');
     const [prompt, setPrompt] = useState('');
     const [numSongs, setNumSongs] = useState(10);
+    const [loading, setLoading] = useState(false);
 
     //Have prompt placeholder text iterate through different examples
     useEffect(() => {
@@ -30,49 +32,55 @@ export default function CreatePlaylistForm(props){
       }, []);
 
     //Submit form to create playlist, then set playlistID to newly created playlist
-    async function handleSubmit(){
+    async function handleSubmit(e){
+        e.preventDefault();
+        setLoading(true);
         const result = await fetch('http://localhost:3001/api/gpt', {
               method: 'POST',
               body: JSON.stringify({prompt, numSongs}),
               headers: { 'Content-Type': 'application/json' },
             });
-            const playlistID = await result.json();
-            console.log(playlistID);
-            props.setPlaylistID(playlistID);
+        const playlistID = await result.json();
+        console.log(playlistID);
+        props.setPlaylistID(playlistID);
+        setLoading(false);
     }
 
  
 
     return(
-        <FormControl>
-            <Stack direction='column' spaceing={2}>
-                <Input 
-                    type='text'
-                    placeholder={placeholder}
-                    value={prompt}
-                    onChange={(e) => setPrompt(e.target.value)}
-                />
-                <Button colorScheme="blue" onClick={handleSubmit}>
-                    Create Playlist!
-                </Button>
-                <Slider
-                    min={5}
-                    max={50}
-                    step={1}
-                    value={numSongs}
-                    onChange={(e) => {setNumSongs(e)}}
-                >
-                    <SliderTrack>
-                        <SliderFilledTrack />
-                    </SliderTrack>
-                    <SliderThumb>
-                        <Text position='relative' top='-25px'>
-                            {numSongs}
-                        </Text>
-                    </SliderThumb>
-                </Slider>
-            </Stack>
-        </FormControl>
+        <>
+            <FormControl>
+                <Stack direction='column' spaceing={2}>
+                    <Input 
+                        type='text'
+                        placeholder={placeholder}
+                        value={prompt}
+                        onChange={(e) => setPrompt(e.target.value)}
+                    />
+                    <Button colorScheme="blue" onClick={handleSubmit}>
+                        Create Playlist!
+                    </Button>
+                    <Slider
+                        min={5}
+                        max={50}
+                        step={1}
+                        value={numSongs}
+                        onChange={(e) => {setNumSongs(e)}}
+                    >
+                        <SliderTrack>
+                            <SliderFilledTrack />
+                        </SliderTrack>
+                        <SliderThumb>
+                            <Text position='relative' top='-25px'>
+                                {numSongs}
+                            </Text>
+                        </SliderThumb>
+                    </Slider>
+                </Stack>
+            </FormControl>
+            {loading && <Loading />}
+        </>
     );
 }
 
