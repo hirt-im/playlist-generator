@@ -17,6 +17,6 @@ export default function SpotifySignIn(){
     }
 
     return(
-        <Button onClick={SignIn}>Sign In to Spotify</Button>
+        <Button colorScheme='whatsapp' onClick={SignIn}>Connect to Spotify</Button>
     );
 }

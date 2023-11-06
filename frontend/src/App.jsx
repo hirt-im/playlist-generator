@@ -13,7 +13,7 @@ function App() {
   return (
     <>
       <SpotifySignIn />
-      <SpotifySignOut />
+      {/* <SpotifySignOut /> */}
       {/* <GetAccessToken /> */}
       <CreatePlaylistForm setPlaylistID={setPlaylistID} />
       <Playlist playlistID={playlistID} />

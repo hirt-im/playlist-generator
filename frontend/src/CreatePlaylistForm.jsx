@@ -59,7 +59,7 @@ export default function CreatePlaylistForm(props){
                         onChange={(e) => setPrompt(e.target.value)}
                     />
                     <Button colorScheme="blue" onClick={handleSubmit}>
-                        Create Playlist!
+                        Generate Playlist!
                     </Button>
                     <Slider
                         min={5}
