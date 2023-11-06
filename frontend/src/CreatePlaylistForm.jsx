@@ -71,6 +71,7 @@ export default function CreatePlaylistForm(props){
                         <SliderTrack>
                             <SliderFilledTrack />
                         </SliderTrack>
+
                         <SliderThumb>
                             <Text position='relative' top='-25px'>
                                 {numSongs}

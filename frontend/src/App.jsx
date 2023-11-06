@@ -5,6 +5,7 @@ import SpotifySignOut from './SpotifySignOut'
 import GetAccessToken from './Getaccesstoken'
 import Playlist from './Playlist'
 import CreatePlaylistForm from './CreatePlaylistForm'
+import ToggleColorMode from './ToggleColorMode'
 
 function App() {
   const [signedIn, setSignedIn] = useState(false);
@@ -17,6 +18,7 @@ function App() {
       {/* <GetAccessToken /> */}
       <CreatePlaylistForm setPlaylistID={setPlaylistID} />
       <Playlist playlistID={playlistID} />
+      <ToggleColorMode />
     </>
   )
 }
