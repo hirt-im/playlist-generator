@@ -1,9 +1,10 @@
-1. Add option to change number of songs in playlist
-2. Add option to make public/private
-3. Display playlist after creation
+1. Make prompt better to produce better results
 
-4. Make prompt better to produce better results
 
-Bugs:
-Sometimes it doesn't work. Creates playlist but returns empty array that should be songs.
-     Perhaps check in case song isn't on spotify or there is error finding it
+Idea: 
+Have component for directions
+     1. First connect your spotify account
+     2. Then enter a prompt for the theme of your playlist
+     3. Select the number of songs you want in your playlist
+     4. Generate!
+If spotify is not connected, make the input box red and the generate button disabled.

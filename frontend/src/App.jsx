@@ -18,7 +18,7 @@ function App() {
       {/* <GetAccessToken /> */}
       <CreatePlaylistForm setPlaylistID={setPlaylistID} />
       <Playlist playlistID={playlistID} />
-      <ToggleColorMode />
+      {/* <ToggleColorMode /> */}
     </>
   )
 }
