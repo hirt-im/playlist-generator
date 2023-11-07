@@ -6,6 +6,7 @@ import GetAccessToken from './Getaccesstoken'
 import Playlist from './Playlist'
 import CreatePlaylistForm from './CreatePlaylistForm'
 import ToggleColorMode from './ToggleColorMode'
+import Directions from './Directions'
 
 function App() {
   const [signedIn, setSignedIn] = useState(false);
@@ -13,6 +14,7 @@ function App() {
 
   return (
     <>
+      <Directions/>
       <SpotifySignIn />
       {/* <SpotifySignOut /> */}
       {/* <GetAccessToken /> */}
