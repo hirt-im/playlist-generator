@@ -49,7 +49,7 @@ export default function CreatePlaylistForm(props){
  
 
     return(
-        <>
+        <div id='form'>
             <FormControl>
                 <Stack direction='column' spaceing={2}>
                     <Input 
@@ -58,30 +58,48 @@ export default function CreatePlaylistForm(props){
                         value={prompt}
                         onChange={(e) => setPrompt(e.target.value)}
                     />
-                    <Button colorScheme="blue" onClick={handleSubmit}>
+                    
+                    <Stack direction ='column' spaceing={2} bg='blue.500' borderRadius={7} p={2}>
+                        <Text fontWeight='semibold' color='white'>Number of Songs</Text>
+                        <Slider
+                            min={5}
+                            max={50}
+                            step={1}
+                            value={numSongs}
+                            onChange={(e) => {setNumSongs(e)}}
+                        >
+                            <SliderTrack>
+                                {/* <SliderFilledTrack /> */}
+                            </SliderTrack>
+                            <SliderThumb>
+                                {/* <Text position='relative' top='-25px'>
+                                    {numSongs}
+                                </Text> */}
+                                <Box
+                                    as="span"
+                                    fontSize="sm"
+                                    color="white"
+                                    bg="cyan.500"
+                                    // p={1}
+                                    pr={1}
+                                    pl={1}
+                                    borderRadius={3}
+                                    position="relative"
+                                >
+                                        {numSongs}
+                                </Box>
+                            </SliderThumb>
+                        </Slider>
+                    </Stack>
+                    
+
+                    <Button colorScheme="whatsapp" onClick={handleSubmit}>
                         Generate Playlist!
                     </Button>
-                    <Slider
-                        min={5}
-                        max={50}
-                        step={1}
-                        value={numSongs}
-                        onChange={(e) => {setNumSongs(e)}}
-                    >
-                        <SliderTrack>
-                            <SliderFilledTrack />
-                        </SliderTrack>
-
-                        <SliderThumb>
-                            <Text position='relative' top='-25px'>
-                                {numSongs}
-                            </Text>
-                        </SliderThumb>
-                    </Slider>
                 </Stack>
             </FormControl>
             {loading && <Loading />}
-        </>
+        </div>
     );
 }
 
