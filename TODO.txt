@@ -1,4 +1,7 @@
 1. Make prompt better to produce better results
+2. Before spotify sign in, make Generate Playlist button disabled with alert that you need to sign in
+     a. on Sign In, remove directions
+          i. or keep directions but remove sign in button
 
 
 Idea: 

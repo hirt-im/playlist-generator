@@ -13,15 +13,15 @@ function App() {
   const [playlistID, setPlaylistID] = useState(null);
 
   return (
-    <>
+    <div className='container'>
       <Directions/>
-      <SpotifySignIn />
+      {/* <SpotifySignIn /> */}
       {/* <SpotifySignOut /> */}
       {/* <GetAccessToken /> */}
       <CreatePlaylistForm setPlaylistID={setPlaylistID} />
       <Playlist playlistID={playlistID} />
       {/* <ToggleColorMode /> */}
-    </>
+    </div>
   )
 }
 
