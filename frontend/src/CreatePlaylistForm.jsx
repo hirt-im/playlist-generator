@@ -20,7 +20,14 @@ export default function CreatePlaylistForm(props){
 
     //Have prompt placeholder text iterate through different examples
     useEffect(() => {
-        const placeholders = ['chill day at the river', 'late night drive', 'high energy electronic workout', 'soothing music to focus'];
+        const placeholders = [
+            'chill day at the river', 
+            'late night drive', 
+            'high energy electronic workout', 
+            'soothing music to focus',
+            'music similar to The Marias'
+        ];
+        
         let currentIndex = 0;
     
         const interval = setInterval(() => {    
