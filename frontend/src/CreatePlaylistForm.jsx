@@ -57,6 +57,8 @@ export default function CreatePlaylistForm(props){
                         placeholder={placeholder}
                         value={prompt}
                         onChange={(e) => setPrompt(e.target.value)}
+                        size='lg'
+                        color='white'
                     />
                     
                     <Stack direction ='column' spaceing={2} bg='blue.500' borderRadius={7} p={2}>
