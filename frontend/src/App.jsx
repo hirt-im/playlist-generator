@@ -14,7 +14,7 @@ function App() {
 
   return (
     <div className='container'>
-      <Directions/>
+      <Directions />
       {/* <SpotifySignIn /> */}
       {/* <SpotifySignOut /> */}
       {/* <GetAccessToken /> */}

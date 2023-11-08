@@ -1,7 +1,7 @@
 import { Button, ButtonGroup } from '@chakra-ui/react'
 
 
-export default function SpotifySignIn(){
+export default function SpotifySignIn(props){
     function SignIn(){
 
 
@@ -12,6 +12,7 @@ export default function SpotifySignIn(){
 
 
         window.location.href = authUrl;
+        props.setSignedIn(true);
 
 
     }

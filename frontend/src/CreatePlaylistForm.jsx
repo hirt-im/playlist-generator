@@ -92,7 +92,7 @@ export default function CreatePlaylistForm(props){
                                     // p={1}
                                     pr={1}
                                     pl={1}
-                                    borderRadius={3}
+                                    borderRadius={50}
                                     position="relative"
                                 >
                                         {numSongs}
@@ -102,7 +102,7 @@ export default function CreatePlaylistForm(props){
                     </Stack>
                     
 
-                    <Button colorScheme="whatsapp" onClick={handleSubmit}>
+                    <Button size='lg' colorScheme="whatsapp" onClick={handleSubmit}>
                         Generate Playlist!
                     </Button>
                 </Stack>
