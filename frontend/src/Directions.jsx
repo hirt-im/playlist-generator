@@ -37,10 +37,10 @@ export default function Directions(){
 
 
     return(
-        <Text width='375px' align='left' color='white'>
+        <Text pb={2} width='375px' align='left' color='white'>
             <OrderedList>
                 {!signedIn && <ListItem><SpotifySignIn setSignedIn={setSignedIn}/></ListItem>}
-                <ListItem>Enter a prompt for your playlist</ListItem>
+                <ListItem>Enter a theme for your playlist</ListItem>
                 <ListItem>Select the number of songs</ListItem>
                 <ListItem>Generate playlist!</ListItem>
             </OrderedList>
