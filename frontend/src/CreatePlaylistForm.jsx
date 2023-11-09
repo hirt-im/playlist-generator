@@ -69,7 +69,7 @@ export default function CreatePlaylistForm(props){
                         id='prompt-input'
                     />
                     
-                    <Stack direction ='column' spaceing={2} bg='blue.500' borderRadius={7} p={2}>
+                    <Stack direction ='column' spaceing={2} bg='transparent' borderRadius={7} p={2}>
                         <Text fontWeight='semibold' color='white'>Number of Songs</Text>
                         <Slider
                             min={5}

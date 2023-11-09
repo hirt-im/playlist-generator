@@ -16,9 +16,9 @@ function App() {
 
   return (
     <div className='container'>
-      {/* <Directions /> */}
+      <Directions />
       {/* <RainbowGlowingBorderInput /> */}
-      <SpotifySignIn />
+      {/* <SpotifySignIn /> */}
       {/* <SpotifySignOut /> */}
       {/* <GetAccessToken /> */}
       <CreatePlaylistForm setPlaylistID={setPlaylistID} />
