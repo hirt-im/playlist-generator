@@ -109,7 +109,7 @@ app.get('/auth/callback', (req, res) => {
 
           res.cookie('access_token', accessToken.access_token, {httpOnly: true, secure: false})
           console.log(accessToken)
-          res.redirect(FRONTEND_URL);
+          res.redirect(FRONTEND_URL + '/?signedIn=true');
 
           //redirect to frontend
 

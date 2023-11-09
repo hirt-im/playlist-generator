@@ -15,3 +15,9 @@ put 'signedIn' into url on redirect from /auth/callback. on pageload, check for 
 
 Future feature:
 1. Obscurity value. Based on value, only pick songs under certain play count
+
+
+
+
+
+Clean up code and remove dependencies no longer used (e.g. cookie-parser)

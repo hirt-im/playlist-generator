@@ -5,8 +5,7 @@ import { useState } from 'react';
 
 
 
-export default function Directions(){
-    const [signedIn, setSignedIn] = useState(false);
+export default function Directions(props){
 
     // if(!signedIn)return(
     //     <Text width='375px' align='left' color='white'>
@@ -39,7 +38,7 @@ export default function Directions(){
     return(
         <Text pb={2} width='375px' align='left' color='white'>
             <OrderedList>
-                {!signedIn && <ListItem><SpotifySignIn setSignedIn={setSignedIn}/></ListItem>}
+                {!props.signedIn && <ListItem><SpotifySignIn/></ListItem>}
                 <ListItem>Enter a theme for your playlist</ListItem>
                 <ListItem>Select the number of songs</ListItem>
                 <ListItem>Generate playlist!</ListItem>

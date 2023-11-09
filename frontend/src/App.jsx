@@ -17,25 +17,22 @@ function App() {
   const [playlistID, setPlaylistID] = useState(null);
 
   useEffect(() => {
-    axios.get('http://localhost:3001/get-access-token')
-    .then(response => {
-      const accessToken = response.data.accessToken;
-      console.log(response.data);
-      // Use the access token as needed
-    })
-    .catch(error => {
-      console.error('Error retrieving access token:', error);
-    });
-    })
+    const urlParams = new URLSearchParams(window.location.search);
+    const valueFromURL = urlParams.get('signedIn');
+    if(valueFromURL === 'true'){
+      setSignedIn(true);
+    }
+    console.log(signedIn);
+  })
 
   return (
     <div className='container'>
-      <Directions />
+      <Directions signedIn={signedIn} />
       {/* <RainbowGlowingBorderInput /> */}
       {/* <SpotifySignIn /> */}
       {/* <SpotifySignOut /> */}
       {/* <GetAccessToken /> */}
-      <CreatePlaylistForm setPlaylistID={setPlaylistID} />
+      <CreatePlaylistForm setPlaylistID={setPlaylistID} signedIn={signedIn} />
       <Playlist playlistID={playlistID} />
       {/* <ToggleColorMode /> */}
     </div>

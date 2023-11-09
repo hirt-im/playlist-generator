@@ -103,7 +103,7 @@ export default function CreatePlaylistForm(props){
                     </Stack>
                     
 
-                    <Button size='lg' colorScheme="telegram" onClick={handleSubmit}>
+                    <Button size='lg' colorScheme="telegram" onClick={handleSubmit} isDisabled={!props.signedIn}>
                         Generate Playlist!
                     </Button>
                 </Stack>
