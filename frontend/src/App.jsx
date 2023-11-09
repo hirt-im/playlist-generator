@@ -7,6 +7,8 @@ import Playlist from './Playlist'
 import CreatePlaylistForm from './CreatePlaylistForm'
 import ToggleColorMode from './ToggleColorMode'
 import Directions from './Directions'
+import RainbowGlowingInput from './Rainbow'
+import RainbowGlowingBorderInput from './Rainbow'
 
 function App() {
   const [signedIn, setSignedIn] = useState(false);
@@ -14,8 +16,9 @@ function App() {
 
   return (
     <div className='container'>
-      <Directions />
-      {/* <SpotifySignIn /> */}
+      {/* <Directions /> */}
+      {/* <RainbowGlowingBorderInput /> */}
+      <SpotifySignIn />
       {/* <SpotifySignOut /> */}
       {/* <GetAccessToken /> */}
       <CreatePlaylistForm setPlaylistID={setPlaylistID} />

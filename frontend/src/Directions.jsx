@@ -1,7 +1,9 @@
-import { Text, OrderedList, ListItem } from '@chakra-ui/react';
+import { Text, OrderedList, ListItem, Button, Collapse } from '@chakra-ui/react';
 import './Directions.css';
 import SpotifySignIn from './SpotifySignIn';
 import { useState } from 'react';
+
+
 
 export default function Directions(){
     const [signedIn, setSignedIn] = useState(false);
@@ -33,3 +35,7 @@ export default function Directions(){
         </Text>
     );
 }
+
+
+
+

@@ -11,3 +11,20 @@
 #form{
   width: 370px;
 }
+
+#prompt-input{
+  animation: rainbowGlowingBorder 5s linear infinite;
+  border: 3px solid;
+}
+
+
+@keyframes rainbowGlowingBorder {
+  0% { border-color: #ff0000; }
+  14% { border-color: #ff7f00; }
+  28% { border-color: #ffff00; }
+  42% { border-color: #00ff00; }
+  57% { border-color: #0000ff; }
+  71% { border-color: #8b00ff; }
+  85% { border-color: #ff00ff; }
+  100% { border-color: #ff0000; }
+}

@@ -66,6 +66,7 @@ export default function CreatePlaylistForm(props){
                         onChange={(e) => setPrompt(e.target.value)}
                         size='lg'
                         color='white'
+                        id='prompt-input'
                     />
                     
                     <Stack direction ='column' spaceing={2} bg='blue.500' borderRadius={7} p={2}>
@@ -102,7 +103,7 @@ export default function CreatePlaylistForm(props){
                     </Stack>
                     
 
-                    <Button size='lg' colorScheme="whatsapp" onClick={handleSubmit}>
+                    <Button size='lg' colorScheme="telegram" onClick={handleSubmit}>
                         Generate Playlist!
                     </Button>
                 </Stack>
