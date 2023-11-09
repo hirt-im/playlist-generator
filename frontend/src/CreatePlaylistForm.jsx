@@ -17,24 +17,21 @@ export default function CreatePlaylistForm(props){
     const [prompt, setPrompt] = useState('');
     const [numSongs, setNumSongs] = useState(10);
     const [loading, setLoading] = useState(false);
+    const placeholders = [
+        'late night drive', 
+        'high energy electronic workout', 
+        'soothing music to focus',
+        'music similar to The Marias',
+        'best pop hits of the early 2000s'
+    ];
 
-    //Have prompt placeholder text iterate through different examples
+    //Iterate through placeholder examples every 3 seconds
     useEffect(() => {
-        const placeholders = [
-            'late night drive', 
-            'high energy electronic workout', 
-            'soothing music to focus',
-            'music similar to The Marias',
-            'best hits of the early 2000s'
-        ];
-        
         let currentIndex = 0;
-    
         const interval = setInterval(() => {    
             setPlaceholder(placeholders[currentIndex]);
             currentIndex = (currentIndex + 1) % placeholders.length;
-        }, 3000); // Change the text every 2 seconds
-    
+        }, 3000); 
         return () => clearInterval(interval);
       }, []);
 
@@ -73,7 +70,7 @@ export default function CreatePlaylistForm(props){
                         <Text fontWeight='semibold' color='white'>Number of Songs</Text>
                         <Slider
                             min={5}
-                            max={50}
+                            max={30}
                             step={1}
                             value={numSongs}
                             onChange={(e) => {setNumSongs(e)}}

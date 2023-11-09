@@ -16,6 +16,9 @@ function App() {
   const [signedIn, setSignedIn] = useState(false);
   const [playlistID, setPlaylistID] = useState(null);
 
+  // example playlist to test mobile styling
+  // const [playlistID, setPlaylistID] = useState('5VHuLfM3pa4gCGzA19ZbDy');
+
   // useEffect(() => {
   //   const urlParams = new URLSearchParams(window.location.search);
   //   const valueFromURL = urlParams.get('signedIn');

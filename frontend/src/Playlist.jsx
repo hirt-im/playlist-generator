@@ -3,7 +3,7 @@ export default function Playlist({playlistID}){
     return(
         <div>
             <iframe src={`https://open.spotify.com/embed/playlist/${playlistID}?utm_source=generator`}
-                    width="375"
+                    width="370"
                     height="480"
                     frameBorder="0"
                     allowtransparency="true"
