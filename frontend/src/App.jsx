@@ -32,9 +32,7 @@ function App() {
       const cookies = document.cookie.split(';');
       for (let i = 0; i < cookies.length; i++) {
         const cookie = cookies[i].trim();
-        // Check if the cookie starts with the desired name
         if (cookie.startsWith(name + '=')) {
-          // Return the value of the cookie
           return cookie.substring(name.length + 1);
         }
       }
@@ -46,17 +44,12 @@ function App() {
     const accessToken = getCookie('access_token');
     
     if (accessToken) {
-      // Do something with the access token
-      console.log('Access Token:', accessToken);
-
-
-      // check if access token is valid, if it is, set signeIn to true, if not, keep it false
+      // check if access token is valid, if it is, set signedIn to true
       setSignedIn(CheckAccessToken(accessToken));
-
     } else {
       console.log('Access Token not found');
     }
-  }, []); // The empty dependency array ensures that
+  }, []); 
 
 
 
@@ -67,17 +60,13 @@ function App() {
           'Authorization': 'Bearer ' + accessToken,
         },
       });
+
+      (response.ok ? true : false);
   
-      if (response.ok) {
-        return true;
-      } else {
-        return false;
-      }
     } catch (error) {
       console.error('Error while checking token validity:', error);
       return false;
     }
-
   }
 
 

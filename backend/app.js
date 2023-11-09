@@ -60,7 +60,6 @@ app.use(express.json());
 
 
 
-let signedIn = false;
 
 //handle Spotify Sign In and store access token
 app.get('/auth/callback', (req, res) => {
@@ -111,17 +110,11 @@ app.get('/auth/callback', (req, res) => {
           res.cookie('access_token', accessToken.access_token, {httpOnly: false, secure: false})
           console.log(accessToken)
 
-          // signedIn = true;
-          // res.redirect(FRONTEND_URL + '/?signedIn=true');
 
           //redirect to frontend
-
           res.redirect('http://localhost:5173');
   
-          // Store or use the access_token and refresh_token as needed
-          // Typically, you would save these tokens securely and associate them with the user.
   
-        //   res.send('Authentication successful! Tokens received.');
         } catch (error) {
           console.error('Error parsing Spotify token response:', error);
           res.status(500).send('Error during token exchange.');
@@ -144,11 +137,6 @@ app.get('/signedIn', (req, res) => {
 })
 
 
-app.get('/get-access-token', (req, res) => {
-  const accessToken = req.cookies.access_token;
-  console.log(accessToken);
-  res.json({ accessToken });
-})
 
 
 
