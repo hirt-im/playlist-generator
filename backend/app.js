@@ -8,6 +8,7 @@ const querystring = require('querystring');
 const dotenv = require('dotenv');
 dotenv.config(); //
 const axios = require('axios');
+const cookieParser = require('cookie-parser');
 
 
 
@@ -25,6 +26,7 @@ const SPOTIFY_TOKEN_URL = 'https://accounts.spotify.com/api/token';
 
 
 const app = express();
+app.use(cookieParser());
 
 const FRONTEND_URL = 'http://localhost:5173'
 
@@ -104,6 +106,8 @@ app.get('/auth/callback', (req, res) => {
 
           req.session.accessToken = tokenData;
           accessToken = tokenData;
+
+          res.cookie('access_token', accessToken.access_token, {httpOnly: true, secure: false})
           console.log(accessToken)
           res.redirect(FRONTEND_URL);
 
@@ -131,6 +135,17 @@ app.get('/auth/callback', (req, res) => {
     request.write(data);
     request.end();
   });
+
+
+
+app.get('/get-access-token', (req, res) => {
+  const accessToken = req.cookies.access_token;
+  console.log(accessToken);
+  res.json({ accessToken });
+})
+
+
+
 
 //give access token to front end
 //WHY DOESNT THIS WORK

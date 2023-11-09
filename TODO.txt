@@ -5,7 +5,12 @@
 1. Make prompt better to produce better results
 
 
+Idea: maybe forget all that accesstoken storing stuff. Have them reconnect every time. Otherwise the token will expire in an hour anyway.
+It's possible to setup a mechanism to store and automatically refresh the access token when it expires, but that might be beyond the scope of this project. 
 
+
+ORRRRRRRRRRRRR:
+put 'signedIn' into url on redirect from /auth/callback. on pageload, check for a 'signedIn' value in the url, and set signed in state accordingly
 
 
 Future feature:
