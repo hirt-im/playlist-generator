@@ -108,15 +108,15 @@ app.get('/auth/callback', (req, res) => {
           req.session.accessToken = tokenData;
           accessToken = tokenData;
 
-          res.cookie('access_token', accessToken.access_token, {httpOnly: true, secure: false})
+          res.cookie('access_token', accessToken.access_token, {httpOnly: false, secure: false})
           console.log(accessToken)
 
-          signedIn = true;
-          res.redirect(FRONTEND_URL + '/?signedIn=true');
+          // signedIn = true;
+          // res.redirect(FRONTEND_URL + '/?signedIn=true');
 
           //redirect to frontend
 
-        //   res.redirect('http://localhost:5173');
+          res.redirect('http://localhost:5173');
   
           // Store or use the access_token and refresh_token as needed
           // Typically, you would save these tokens securely and associate them with the user.

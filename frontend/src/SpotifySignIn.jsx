@@ -12,7 +12,7 @@ export default function SpotifySignIn(props){
 
 
         window.location.href = authUrl;
-        props.setSignedIn(true);
+        // props.setSignedIn(true);
 
 
     }
