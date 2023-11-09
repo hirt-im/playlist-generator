@@ -1,13 +1,12 @@
+0. Store access token somehow (cookies?). On page load, check for accessToken. 
+     a. useEffect in App.jsx to check for valid accessToken
+     b. have signedIn state to pass to 'Directions' and the 'Generate Playlist!' button (disable if not signed in)
+
 1. Make prompt better to produce better results
-2. Before spotify sign in, make Generate Playlist button disabled with alert that you need to sign in
-     a. on Sign In, remove directions
-          i. or keep directions but remove sign in button
 
 
-Idea: 
-Have component for directions
-     1. First connect your spotify account
-     2. Then enter a prompt for the theme of your playlist
-     3. Select the number of songs you want in your playlist
-     4. Generate!
-If spotify is not connected, make the input box red and the generate button disabled.
+
+
+
+Future feature:
+1. Obscurity value. Based on value, only pick songs under certain play count

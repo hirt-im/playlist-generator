@@ -21,11 +21,11 @@ export default function CreatePlaylistForm(props){
     //Have prompt placeholder text iterate through different examples
     useEffect(() => {
         const placeholders = [
-            'chill day at the river', 
             'late night drive', 
             'high energy electronic workout', 
             'soothing music to focus',
-            'music similar to The Marias'
+            'music similar to The Marias',
+            'best hits of the early 2000s'
         ];
         
         let currentIndex = 0;
