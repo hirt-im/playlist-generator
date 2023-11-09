@@ -61,7 +61,7 @@ function App() {
         },
       });
 
-      (response.ok ? true : false);
+      return response.ok;
   
     } catch (error) {
       console.error('Error while checking token validity:', error);
