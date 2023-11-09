@@ -60,6 +60,7 @@ app.use(express.json());
 
 
 
+let signedIn = false;
 
 //handle Spotify Sign In and store access token
 app.get('/auth/callback', (req, res) => {
@@ -109,6 +110,8 @@ app.get('/auth/callback', (req, res) => {
 
           res.cookie('access_token', accessToken.access_token, {httpOnly: true, secure: false})
           console.log(accessToken)
+
+          signedIn = true;
           res.redirect(FRONTEND_URL + '/?signedIn=true');
 
           //redirect to frontend
@@ -136,6 +139,9 @@ app.get('/auth/callback', (req, res) => {
     request.end();
   });
 
+app.get('/signedIn', (req, res) => {
+  res.json({signedIn})
+})
 
 
 app.get('/get-access-token', (req, res) => {

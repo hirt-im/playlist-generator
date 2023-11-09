@@ -16,14 +16,17 @@ function App() {
   const [signedIn, setSignedIn] = useState(false);
   const [playlistID, setPlaylistID] = useState(null);
 
-  useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const valueFromURL = urlParams.get('signedIn');
-    if(valueFromURL === 'true'){
-      setSignedIn(true);
-    }
-    console.log(signedIn);
-  })
+  // useEffect(() => {
+  //   const urlParams = new URLSearchParams(window.location.search);
+  //   const valueFromURL = urlParams.get('signedIn');
+  //   if(valueFromURL === 'true'){
+  //     setSignedIn(true);
+  //   }
+  //   console.log(signedIn);
+  // })
+
+    let signedInState = await fetch('http://localhost:3001/signedIn')
+    console.log(signedInState);
 
   return (
     <div className='container'>
