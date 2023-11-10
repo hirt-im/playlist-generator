@@ -9,6 +9,7 @@ import {
   } from '@chakra-ui/react'
 import './CreatePlaylistForm.css';
 import Loading from './Loading';
+import LoadingButton from './LoadingButton';
 
 
 
@@ -100,14 +101,22 @@ export default function CreatePlaylistForm(props){
                             </SliderThumb>
                         </Slider>
                     </Stack>
-                    
 
-                    <Button className='generate-button' size='lg' colorScheme="telegram" onClick={handleSubmit} isDisabled={!props.signedIn}>
-                        Generate Playlist!
-                    </Button>
+                    {/* <Button className='generate-button' size='lg' colorScheme="telegram" onClick={handleSubmit} isDisabled={!props.signedIn || loading}>
+                            Generate Playlist!
+                    </Button>  
+                     */}
+                    {(!loading ? 
+                        <Button className='generate-button' size='lg' colorScheme="telegram" onClick={handleSubmit} isDisabled={!props.signedIn}>
+                            Generate Playlist!
+                        </Button> :  
+                        <LoadingButton />
+                    )}
+                    
+                    
                 </Stack>
             </FormControl>
-            {loading && <Loading />}
+            {/* {loading && <Loading />} */}
         </div>
     );
 }

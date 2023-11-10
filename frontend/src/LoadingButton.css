@@ -1,0 +1,23 @@
+.loading {
+    width: 370px;
+  }
+  
+.loading:after {
+    content: '\00a0\00a0\00a0';
+    animation: progress-ellipsis 1.5s infinite;
+}
+
+@keyframes progress-ellipsis {
+    0% {
+        content: '\00a0\00a0\00a0';
+    }
+    30% {
+        content: '.\00a0\00a0';
+    }
+    60% {
+        content: '..\00a0';
+    }
+    90% {
+        content: '...';
+    }
+}
