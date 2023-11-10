@@ -15,10 +15,10 @@ import LoadingButton from './LoadingButton'
 
 function App() {
   const [signedIn, setSignedIn] = useState(false);
-  // const [playlistID, setPlaylistID] = useState(null);
+  const [playlistID, setPlaylistID] = useState(null);
 
   // example playlist to test mobile styling
-  const [playlistID, setPlaylistID] = useState('4fYg5ISSUkrJIclevsewXU');
+  // const [playlistID, setPlaylistID] = useState('4fYg5ISSUkrJIclevsewXU');
 
   // useEffect(() => {
   //   const urlParams = new URLSearchParams(window.location.search);
@@ -84,13 +84,16 @@ function App() {
 
   return (
     <div className='container'>
-      <Directions signedIn={signedIn} />
+      {(!playlistID ?       
+      <Directions signedIn={signedIn} /> : 
+      <Playlist playlistID={playlistID} />
+      )}
+      {/* <Directions signedIn={signedIn} /> */}
       {/* <RainbowGlowingBorderInput /> */}
       {/* <SpotifySignIn /> */}
       {/* <SpotifySignOut /> */}
       {/* <GetAccessToken /> */}
       <CreatePlaylistForm setPlaylistID={setPlaylistID} signedIn={signedIn} />
-      <Playlist playlistID={playlistID} />
       {/* <ToggleColorMode /> */}
     </div>
   )

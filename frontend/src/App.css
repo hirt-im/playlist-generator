@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Agbalumo&family=Poppins:wght@300&family=Rubik:wght@400;500&family=Ysabeau+Office:wght@600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Agbalumo&family=Archivo:wght@300&family=Hind&family=Montserrat&family=Poppins:wght@300&family=Rubik:wght@400;500&family=Ysabeau+Office:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Agbalumo&family=Archivo:wght@300&family=Nunito&family=Montserrat&family=Poppins:wght@300&family=Rubik:wght@400;500&family=Ysabeau+Office:wght@600&display=swap');
 
 
 #root {
@@ -8,7 +8,7 @@
   padding: 2rem;
   text-align: center;
 
-  /* font-family: Hind, sans-serif; */
+  /* font-family: Nunito, sans-serif; */
 
 }
 
@@ -63,4 +63,5 @@ body{
 .container{
   display: flex;
   flex-direction: column;
+  gap: 5px;
 }

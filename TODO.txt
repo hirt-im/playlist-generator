@@ -21,3 +21,9 @@ Future feature:
 
 
 Clean up code and remove dependencies no longer used (e.g. cookie-parser)
+
+
+
+
+IDEA:
+Make directions box same size as playlist. Have directions appear at first, on playlist generation, replace directions with playlist
