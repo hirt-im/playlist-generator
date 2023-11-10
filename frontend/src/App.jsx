@@ -47,8 +47,14 @@ function App() {
     const accessToken = getCookie('access_token');
     
     if (accessToken) {
+      setSignedIn(true);
+
+
+
+
+      // No longer necessary to check if token is valid, changed to make the cookie expire after 1 hour, which is when the access token expires
       // check if access token is valid, if it is, set signedIn to true
-      setSignedIn(CheckAccessToken(accessToken));
+      // setSignedIn(CheckAccessToken(accessToken));
     } else {
       console.log('Access Token not found');
     }
@@ -63,7 +69,7 @@ function App() {
           'Authorization': 'Bearer ' + accessToken,
         },
       });
-
+      console.log(response.ok);
       return response.ok;
   
     } catch (error) {

@@ -107,7 +107,8 @@ app.get('/auth/callback', (req, res) => {
           req.session.accessToken = tokenData;
           accessToken = tokenData;
 
-          res.cookie('access_token', accessToken.access_token, {httpOnly: false, secure: false})
+          // create cookie with access token data that expires after 1 hour
+          res.cookie('access_token', accessToken.access_token, {httpOnly: false, secure: false, maxAge: 3600000})
           console.log(accessToken)
 
 
