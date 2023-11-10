@@ -3,6 +3,7 @@
      b. have signedIn state to pass to 'Directions' and the 'Generate Playlist!' button (disable if not signed in)
 
 1. Make prompt better to produce better results
+2. Set input character limit to 100 (max length for spotify playlist name)
 
 
 Idea: maybe forget all that accesstoken storing stuff. Have them reconnect every time. Otherwise the token will expire in an hour anyway.

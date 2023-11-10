@@ -5,7 +5,7 @@ import { Button, Box } from '@chakra-ui/react';
 export default function LoadingButton(){
     return (
         <Button className='loading' size='lg' colorScheme="telegram" isDisabled={true}>
-                        Generating
+            Generating
         </Button>
       );
 };
