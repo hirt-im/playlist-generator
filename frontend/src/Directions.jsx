@@ -36,7 +36,7 @@ export default function Directions(props){
 
 
     return(
-        <Text pb={2} width='375px' align='left' color='white'>
+        <Text className='directions' pb={2} width='375px' align='left' color='white'>
             <OrderedList>
                 {!props.signedIn && <ListItem><SpotifySignIn/></ListItem>}
                 <ListItem>Enter a theme for your playlist</ListItem>

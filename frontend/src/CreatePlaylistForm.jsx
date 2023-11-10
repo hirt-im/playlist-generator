@@ -54,9 +54,10 @@ export default function CreatePlaylistForm(props){
 
     return(
         <div id='form'>
-            <FormControl>
+            <FormControl className='form'>
                 <Stack direction='column' spaceing={2}>
                     <Input 
+                        className='input'
                         type='text'
                         placeholder={placeholder}
                         value={prompt}
@@ -67,8 +68,9 @@ export default function CreatePlaylistForm(props){
                     />
                     
                     <Stack direction ='column' spaceing={2} bg='transparent' borderRadius={7} p={2}>
-                        <Text fontWeight='semibold' color='white'>Number of Songs</Text>
+                        <Text className='slider-label' fontWeight='semibold' color='white'>Number of Songs</Text>
                         <Slider
+                            className='slider'
                             min={5}
                             max={30}
                             step={1}
@@ -100,7 +102,7 @@ export default function CreatePlaylistForm(props){
                     </Stack>
                     
 
-                    <Button size='lg' colorScheme="telegram" onClick={handleSubmit} isDisabled={!props.signedIn}>
+                    <Button className='generate-button' size='lg' colorScheme="telegram" onClick={handleSubmit} isDisabled={!props.signedIn}>
                         Generate Playlist!
                     </Button>
                 </Stack>

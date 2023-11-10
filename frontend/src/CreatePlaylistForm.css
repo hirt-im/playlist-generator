@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Agbalumo&family=Poppins:wght@300&family=Rubik:wght@400;500&family=Ysabeau+Office:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Agbalumo&family=Lato&family=Montserrat&family=Poppins:wght@300&family=Rubik:wght@400;500&family=Ysabeau+Office:wght@600&display=swap');
 .fade-in {
     opacity: 1;
     transition: opacity 0.5s ease-in-out;
@@ -16,6 +18,16 @@
   animation: rainbowGlowingBorder 5s linear infinite;
   border: 3px solid;
 }
+
+.input{
+  font-family: Agbalumo, sans-serif;
+}
+
+
+
+
+
+
 
 
 @keyframes rainbowGlowingBorder {
