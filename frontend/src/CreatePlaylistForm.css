@@ -17,6 +17,7 @@
 #prompt-input{
   animation: rainbowGlowingBorder 5s linear infinite;
   border: 3px solid;
+  margin-top: 10px;
 }
 
 .input{
