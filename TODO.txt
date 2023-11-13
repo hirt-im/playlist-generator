@@ -1,17 +1,7 @@
-0. Store access token somehow (cookies?). On page load, check for accessToken. 
-     a. useEffect in App.jsx to check for valid accessToken
-     b. have signedIn state to pass to 'Directions' and the 'Generate Playlist!' button (disable if not signed in)
+0. Button to delete generated playlist from their account
+1. Organize files into components
+2. Make prompt better to produce better results
 
-1. Make prompt better to produce better results
-2. Set input character limit to 100 (max length for spotify playlist name)
-
-
-Idea: maybe forget all that accesstoken storing stuff. Have them reconnect every time. Otherwise the token will expire in an hour anyway.
-It's possible to setup a mechanism to store and automatically refresh the access token when it expires, but that might be beyond the scope of this project. 
-
-
-ORRRRRRRRRRRRR:
-put 'signedIn' into url on redirect from /auth/callback. on pageload, check for a 'signedIn' value in the url, and set signed in state accordingly
 
 
 Future feature:
@@ -25,6 +15,3 @@ Clean up code and remove dependencies no longer used (e.g. cookie-parser)
 
 
 
-
-IDEA:
-Make directions box same size as playlist. Have directions appear at first, on playlist generation, replace directions with playlist
