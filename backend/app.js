@@ -40,6 +40,7 @@ const spotifyAuth = {
 };
 
 let accessToken = null;
+let currPlaylistID = null;
 
 // app.use(cors());
 
@@ -320,6 +321,7 @@ async function CreatePlaylist(name, songURIs){
     });
 
     const playlistId = createPlaylistResponse.data.id;
+    currPlaylistID = playlistId;
 
 
     // Add songs to the playlist
@@ -430,6 +432,23 @@ async function GetSongURIs(songList){
 };
 
 
+app.delete('/deletePlaylist', async (req, res) => {
+  console.log(currPlaylistID);
+  try {
+    const response = await axios.delete(
+      `https://api.spotify.com/v1/playlists/${currPlaylistID}/followers`,
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken.access_token}`,
+        },
+      }
+    );
+    res.status(200).json(response.data);
+  } catch (error) {
+    console.error('Error deleting playlist:', error.response.data);
+    res.status(error.response.status).json(error.response.data);
+  }
+});
 
 
 

@@ -49,6 +49,7 @@ export default function CreatePlaylistForm(props){
         console.log(playlistID);
         props.setPlaylistID(playlistID);
         setLoading(false);
+        props.setPlaylistDeleted(false);
     }
 
  

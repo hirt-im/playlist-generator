@@ -2,6 +2,8 @@
 1. Organize files into components
 2. Make prompt better to produce better results
 
+00. On page load when retrieving access token cookie, send it to backend (backend doesn't have it on page reload)
+
 
 
 Future feature:

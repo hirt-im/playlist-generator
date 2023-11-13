@@ -11,11 +11,13 @@ import RainbowGlowingInput from './Rainbow'
 import RainbowGlowingBorderInput from './Rainbow'
 import axios from 'axios';
 import LoadingButton from './LoadingButton'
+import DeletePlaylist from './DeletePlaylist'
 
 
 function App() {
   const [signedIn, setSignedIn] = useState(false);
   const [playlistID, setPlaylistID] = useState(null);
+  const [playlistDeleted, setPlaylistDeleted] = useState(false);
 
   // example playlist to test mobile styling
   // const [playlistID, setPlaylistID] = useState('4fYg5ISSUkrJIclevsewXU');
@@ -84,16 +86,21 @@ function App() {
 
   return (
     <div className='container'>
-      {(!playlistID ?       
-      <Directions signedIn={signedIn} /> : 
-      <Playlist playlistID={playlistID} />
+      {/* <DeletePlaylist /> */}
+      {(!playlistID ?
+        <Directions signedIn={signedIn} />
+          : 
+        <div className='playlist'>
+          <DeletePlaylist playlistID={playlistID} setPlaylistDeleted={setPlaylistDeleted} playlistDeleted={playlistDeleted} />       
+          <Playlist playlistID={playlistID} />
+        </div>
       )}
       {/* <Directions signedIn={signedIn} /> */}
       {/* <RainbowGlowingBorderInput /> */}
       {/* <SpotifySignIn /> */}
       {/* <SpotifySignOut /> */}
       {/* <GetAccessToken /> */}
-      <CreatePlaylistForm setPlaylistID={setPlaylistID} signedIn={signedIn} />
+      <CreatePlaylistForm setPlaylistID={setPlaylistID} signedIn={signedIn} setPlaylistDeleted={setPlaylistDeleted} playlistDeleted={playlistDeleted} />
       {/* <ToggleColorMode /> */}
     </div>
   )
