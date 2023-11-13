@@ -55,7 +55,7 @@ export default function Directions(props){
                 Use it to make a playlist for a specific event or activity,
                 or to find songs that fit a certain mood or are similar to a different artist. You can be as specific or broad as you like, 
                 the app will take it from there! It's simple to use, just:<br></br>
-                <OrderedList className='list'>
+                <OrderedList ml={20} className='list'>
                     {!props.signedIn && <ListItem><SpotifySignIn/></ListItem>}
                     <ListItem>Enter a theme for your playlist</ListItem>
                     <ListItem>Select the number of songs</ListItem>
