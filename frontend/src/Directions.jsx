@@ -51,7 +51,7 @@ export default function Directions(props){
         <Stack className='intro-container'>
             <Heading fontSize={45} color='white'>SongGuru</Heading>
             <Text className='directions' fontSize={18} pb={2} width='375px' align='left' color='white'>
-                SongGuru utilizes ChatGPT to create a Spotify playlist based on a prompt. The prompt is a theme for your playlist. It can be anything.
+                SongGuru utilizes ChatGPT to generate a Spotify playlist based on a prompt. The prompt is a theme for your playlist. It can be anything.
                 Use it to make a playlist for a specific event or activity,
                 or to find songs that fit a certain mood or are similar to a different artist. You can be as specific or broad as you like, 
                 the app will take it from there! It's simple to use, just:<br></br>
