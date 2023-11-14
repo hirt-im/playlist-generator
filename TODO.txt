@@ -9,12 +9,14 @@ Bugs:
 
 Future feature:
 1. Obscurity value. Based on value, only pick songs under certain play count
+    a. maybe not possible since chatGPT doesn't have access to spotify data
+        i. would need to generate large list and then filter by play count using spotify api
+            a. even then, it's not guaranteed chatgpt would give enough songs for the obscurity value
 
 
 
 
 
-Clean up code and remove dependencies no longer used (e.g. cookie-parser)
 
 
 
