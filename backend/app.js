@@ -452,6 +452,11 @@ app.delete('/deletePlaylist', async (req, res) => {
 
 
 
+app.post('/storeToken', (req, res) => {
+  accessToken.access_token = req.body.data;
+})
+
+
 
 
 

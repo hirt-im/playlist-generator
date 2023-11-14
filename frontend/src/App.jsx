@@ -48,8 +48,10 @@ function App() {
 
     // Get the value of the 'access_token' cookie
     const accessToken = getCookie('access_token');
-    
+
+    // Send accesstoken to backend
     if (accessToken) {
+      StoreToken(accessToken);
       setSignedIn(true);
 
 
@@ -64,6 +66,11 @@ function App() {
   }, []); 
 
 
+  async function StoreToken(accessToken){
+    await axios.post('http://localhost:3001/storeToken', {
+      data: accessToken,
+    })
+  }
 
   async function CheckAccessToken(accessToken){
     try {
