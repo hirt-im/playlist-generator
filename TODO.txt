@@ -1,7 +1,9 @@
 1. Organize files into components
 2. Make prompt better to produce better results
 
-
+Bugs:
+1. Access token reading null sometimes (related to page reload and how it's only temporarily stored on backend)
+    a. Possible solution: have frontend send access_token cookie value to backend on page load
 
 
 Future feature:
