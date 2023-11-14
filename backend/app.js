@@ -39,6 +39,7 @@ const spotifyAuth = {
   redirect_uri: REDIRECT_URI,
 };
 
+let fullTokenData = null;
 let accessToken = null;
 let currPlaylistID = null;
 
@@ -106,10 +107,11 @@ app.get('/auth/callback', (req, res) => {
         //   res.json(tokenData);
 
           req.session.accessToken = tokenData;
-          accessToken = tokenData;
+          fullTokenData = tokenData;
+          accessToken = tokenData.access_token;
 
           // create cookie with access token data that expires after 1 hour
-          res.cookie('access_token', accessToken.access_token, {httpOnly: false, secure: false, maxAge: 3600000})
+          res.cookie('access_token', accessToken, {httpOnly: false, secure: false, maxAge: 3600000})
           console.log(accessToken)
 
 
@@ -272,7 +274,7 @@ app.get('/api/createPlaylistAxios', async (req, res) => {
     // Create a playlist
     const createPlaylistResponse = await axios.post('https://api.spotify.com/v1/me/playlists', playlistData, {
       headers: {
-        'Authorization': `Bearer ${accessToken.access_token}`,
+        'Authorization': `Bearer ${accessToken}`,
         'Content-Type': 'application/json',
       },
     });
@@ -290,7 +292,7 @@ app.get('/api/createPlaylistAxios', async (req, res) => {
     // Add songs to the playlist
     await axios.post(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, songURIs, {
       headers: {
-        'Authorization': `Bearer ${accessToken.access_token}`,
+        'Authorization': `Bearer ${accessToken}`,
         'Content-Type': 'application/json',
       }
     });
@@ -315,7 +317,7 @@ async function CreatePlaylist(name, songURIs){
     // Create a playlist
     const createPlaylistResponse = await axios.post('https://api.spotify.com/v1/me/playlists', playlistData, {
       headers: {
-        'Authorization': `Bearer ${accessToken.access_token}`,
+        'Authorization': `Bearer ${accessToken}`,
         'Content-Type': 'application/json',
       },
     });
@@ -327,7 +329,7 @@ async function CreatePlaylist(name, songURIs){
     // Add songs to the playlist
     await axios.post(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, songURIs, {
       headers: {
-        'Authorization': `Bearer ${accessToken.access_token}`,
+        'Authorization': `Bearer ${accessToken}`,
         'Content-Type': 'application/json',
       }
     });
@@ -411,7 +413,7 @@ async function GetSongURIs(songList){
     songList.map(async (song) => {
       const response = await fetch(`https://api.spotify.com/v1/search?q=${encodeURIComponent(song)}&type=track`, {
         headers: {
-          Authorization: `Bearer ${accessToken.access_token}`,
+          Authorization: `Bearer ${accessToken}`,
         },
       });
 
@@ -439,7 +441,7 @@ app.delete('/deletePlaylist', async (req, res) => {
       `https://api.spotify.com/v1/playlists/${currPlaylistID}/followers`,
       {
         headers: {
-          Authorization: `Bearer ${accessToken.access_token}`,
+          Authorization: `Bearer ${accessToken}`,
         },
       }
     );
@@ -453,7 +455,7 @@ app.delete('/deletePlaylist', async (req, res) => {
 
 
 app.post('/storeToken', (req, res) => {
-  accessToken.access_token = req.body.data;
+  accessToken = req.body.data;
 })
 
 
