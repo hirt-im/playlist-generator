@@ -2,8 +2,9 @@
 2. Make prompt better to produce better results
 
 Bugs:
-1. Access token reading null sometimes (related to page reload and how it's only temporarily stored on backend)
-    a. Possible solution: have frontend send access_token cookie value to backend on page load
+1. Sometimes it generates playlist but gets stuck and doesn't add songs
+    a. possibly has problems finding certain song uris (maybe if song isn't on spotify)
+        i. Solution: while finding songURIs, handle case where song isn't found
 
 
 Future feature:
