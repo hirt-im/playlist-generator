@@ -46,9 +46,8 @@ export default function CreatePlaylistForm(props){
               headers: { 'Content-Type': 'application/json' },
             });
         const playlistID = await result.json();
-        console.log(playlistID);
-        props.setPlaylistID(playlistID);
         setLoading(false);
+        props.setPlaylistID(playlistID);
         props.setPlaylistDeleted(false);
     }
 
