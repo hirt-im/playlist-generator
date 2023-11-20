@@ -1,8 +1,6 @@
-import { Text, OrderedList, ListItem, Button, Collapse, Heading, Stack, Flex} from '@chakra-ui/react';
+import { Text, OrderedList, ListItem, Heading, Stack } from '@chakra-ui/react';
 import './Directions.css';
 import SpotifySignIn from '../SpotifySignIn';
-import { useState } from 'react';
-
 
 
 export default function Directions(props){
@@ -22,11 +20,6 @@ export default function Directions(props){
                 </OrderedList>
             </Text>
         </Stack>
-
-        
     );
 }
-
-
-
 
