@@ -1,22 +1,17 @@
-1. Organize files into components
-2. Make prompt better to produce better results
+1. Prepare for building and deploying
+    a. make routes (backend and frontend) be constants to pass to components as props
+
 
 Bugs:
 1. Sometimes it generates playlist but gets stuck and doesn't add songs
     a. possibly has problems finding certain song uris (maybe if song isn't on spotify)
         i. Solution: while finding songURIs, handle case where song isn't found
+            ?: if a song isn't found it should still continue fine. I'm not sure what the problem is.
 
 
-Future feature:
+Possible feature:
 1. Obscurity value. Based on value, only pick songs under certain play count
     a. maybe not possible since chatGPT doesn't have access to spotify data
         i. would need to generate large list and then filter by play count using spotify api
             a. even then, it's not guaranteed chatgpt would give enough songs for the obscurity value
-
-
-
-
-
-
-
 
