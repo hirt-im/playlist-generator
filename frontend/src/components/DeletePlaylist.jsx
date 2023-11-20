@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Button, Box } from '@chakra-ui/react';
+import { Button } from '@chakra-ui/react';
+
 
 export default function DeletePlaylist(props){
 
@@ -27,13 +27,9 @@ export default function DeletePlaylist(props){
     }
 
     return(
-        <Button width={370} size='lg' colorScheme="red" onClick={deletePlaylist} isDisabled={true}>
+        <Button width={370} size='lg' colorScheme="red" isDisabled={true}>
             Playlist Unfollowed!
         </Button>
       );
 };
-
-
-
-
 
