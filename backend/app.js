@@ -310,7 +310,7 @@ async function CreatePlaylist(name, songURIs){
   try {
     const playlistData = {
       name: name,
-      description: 'Created using Spotify Playlist Generator by Michael Hirt',
+      description: '',
       public: false, // Set to true for a public playlist
     };
 
