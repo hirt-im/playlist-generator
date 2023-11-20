@@ -23,7 +23,7 @@ function App() {
           return cookie.substring(name.length + 1);
         }
       }
-      // Return null if the cookie with the specified name is not found
+      // Return null if access token cookie does not exist
       return null;
     };
 
