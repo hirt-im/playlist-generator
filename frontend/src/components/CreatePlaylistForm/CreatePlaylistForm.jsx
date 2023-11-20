@@ -1,15 +1,8 @@
 import { Input, Box, FormControl, Stack, Button, Text  } from '@chakra-ui/react'
 import { useState, useEffect } from 'react';
-import {
-    Slider,
-    SliderTrack,
-    SliderFilledTrack,
-    SliderThumb,
-    SliderMark,
-  } from '@chakra-ui/react'
+import { Slider, SliderTrack, SliderThumb } from '@chakra-ui/react'
 import './CreatePlaylistForm.css';
 import LoadingButton from '../LoadingButton/LoadingButton';
-
 
 
 export default function CreatePlaylistForm(props){
@@ -50,8 +43,6 @@ export default function CreatePlaylistForm(props){
         props.setPlaylistDeleted(false);
     }
 
- 
-
     return(
         <div id='form'>
             <FormControl className='form'>
@@ -77,13 +68,8 @@ export default function CreatePlaylistForm(props){
                             value={numSongs}
                             onChange={(e) => {setNumSongs(e)}}
                         >
-                            <SliderTrack>
-                                {/* <SliderFilledTrack /> */}
-                            </SliderTrack>
+                            <SliderTrack />
                             <SliderThumb>
-                                {/* <Text position='relative' top='-25px'>
-                                    {numSongs}
-                                </Text> */}
                                 <Box
                                     as="span"
                                     fontSize="sm"
@@ -95,27 +81,19 @@ export default function CreatePlaylistForm(props){
                                     borderRadius={50}
                                     position="relative"
                                 >
-                                        {numSongs}
+                                    {numSongs}
                                 </Box>
                             </SliderThumb>
                         </Slider>
                     </Stack>
-
-                    {/* <Button className='generate-button' size='lg' colorScheme="telegram" onClick={handleSubmit} isDisabled={!props.signedIn || loading}>
-                            Generate Playlist!
-                    </Button>  
-                     */}
                     {(!loading ? 
                         <Button className='generate-button' size='lg' colorScheme="telegram" onClick={handleSubmit} isDisabled={!props.signedIn}>
                             Generate Playlist!
                         </Button> :  
                         <LoadingButton />
-                    )}
-                    
-                    
+                    )}   
                 </Stack>
             </FormControl>
-            {/* {loading && <Loading />} */}
         </div>
     );
 }
