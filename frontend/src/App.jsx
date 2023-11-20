@@ -12,6 +12,7 @@ function App() {
   const [playlistID, setPlaylistID] = useState(null);
   const [playlistDeleted, setPlaylistDeleted] = useState(false);
 
+  // Get Spotify access token from cookie and send to backend if it exists 
   useEffect(() => {
     // Function to get the value of a cookie by its name
     const getCookie = (name) => {
