@@ -32,7 +32,7 @@ export default function CreatePlaylistForm(props){
     async function handleSubmit(e){
         e.preventDefault();
         setLoading(true);
-        const result = await fetch('http://localhost:3001/api/gpt', {
+        const result = await fetch('http://localhost:3001/createPlaylist', {
               method: 'POST',
               body: JSON.stringify({prompt, numSongs}),
               headers: { 'Content-Type': 'application/json' },
