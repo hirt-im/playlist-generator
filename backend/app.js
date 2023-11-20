@@ -39,67 +39,67 @@ app.use(express.json());
 
 // Handle Spotify sign in and store access token
 app.get('/auth/callback', (req, res) => {
-    // Extract the authorization code from the query parameters
-    const authorizationCode = req.query.code;
-    if (!authorizationCode) {
-      return res.status(400).send('Authorization code not provided.');
-    }
-  
-    // Define the data to send in the POST request to exchange the code for tokens
-    const data = querystring.stringify({
-      grant_type: 'authorization_code',
-      code: authorizationCode,
-      redirect_uri: REDIRECT_URI,
-    });
-  
-    // Configure the POST request options
-    const options = {
-      method: 'POST',
-      headers: {
-        'Authorization': `Basic ${Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`).toString('base64')}`,
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Content-Length': data.length,
-      },
-    };
-  
-    // Make the POST request to exchange the code for tokens
-    const request = https.request(SPOTIFY_TOKEN_URL, options, (response) => {
-      let responseData = '';
-  
-      response.on('data', (chunk) => {
-        responseData += chunk;
-      });
-  
-      response.on('end', () => {
-        try {
-          const tokenData = JSON.parse(responseData);
-          req.session.accessToken = tokenData;
-          fullTokenData = tokenData;
-          accessToken = tokenData.access_token;
+  // Extract the authorization code from the query parameters
+  const authorizationCode = req.query.code;
+  if (!authorizationCode) {
+    return res.status(400).send('Authorization code not provided.');
+  }
 
-          // create cookie with access token data that expires after 1 hour
-          res.cookie('access_token', accessToken, {httpOnly: false, secure: false, maxAge: 3600000})
-          console.log(accessToken)
-
-          //redirect to frontend
-          res.redirect('http://localhost:5173');
-
-        } catch (error) {
-          console.error('Error parsing Spotify token response:', error);
-          res.status(500).send('Error during token exchange.');
-        }
-      });
-    });
-  
-    request.on('error', (error) => {
-      console.error('Error making Spotify token request:', error);
-      res.status(500).send('Error during token exchange.');
-    });
-  
-    // Send the data and complete the request
-    request.write(data);
-    request.end();
+  // Define the data to send in the POST request to exchange the code for tokens
+  const data = querystring.stringify({
+    grant_type: 'authorization_code',
+    code: authorizationCode,
+    redirect_uri: REDIRECT_URI,
   });
+
+  // Configure the POST request options
+  const options = {
+    method: 'POST',
+    headers: {
+      'Authorization': `Basic ${Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`).toString('base64')}`,
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Content-Length': data.length,
+    },
+  };
+
+  // Make the POST request to exchange the code for tokens
+  const request = https.request(SPOTIFY_TOKEN_URL, options, (response) => {
+    let responseData = '';
+
+    response.on('data', (chunk) => {
+      responseData += chunk;
+    });
+
+    response.on('end', () => {
+      try {
+        const tokenData = JSON.parse(responseData);
+        req.session.accessToken = tokenData;
+        fullTokenData = tokenData;
+        accessToken = tokenData.access_token;
+
+        // create cookie with access token data that expires after 1 hour
+        res.cookie('access_token', accessToken, {httpOnly: false, secure: false, maxAge: 3600000})
+        console.log(accessToken)
+
+        //redirect to frontend
+        res.redirect('http://localhost:5173');
+
+      } catch (error) {
+        console.error('Error parsing Spotify token response:', error);
+        res.status(500).send('Error during token exchange.');
+      }
+    });
+  });
+
+  request.on('error', (error) => {
+    console.error('Error making Spotify token request:', error);
+    res.status(500).send('Error during token exchange.');
+  });
+
+  // Send the data and complete the request
+  request.write(data);
+  request.end();
+});
 
 
 // Get spotify song URIs from list of songs
@@ -164,9 +164,8 @@ const openai = new OpenAI({
   apiKey: process.env.CHATGPT_KEY, 
 });
 
-
 // Take form data from frontend, create Spotify playlist, return playlistID to frontend
-app.post('/api/gpt', async (req, res) => {
+app.post('/createPlaylist', async (req, res) => {
   const prompt = req.body.prompt;
   const numSongs = req.body.numSongs;
   const chatInput = 'Generate a playlist of songs that are on spotify. The theme of the playlist is: ' + prompt +'. The list should be numbered and include ' + numSongs + ' songs.';
