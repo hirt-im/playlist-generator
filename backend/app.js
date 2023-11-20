@@ -204,7 +204,7 @@ app.post('/createPlaylist', async (req, res) => {
 );
 
 
-app.delete('/unfollowPlaylist', async (req, res) => {
+app.delete('/deletePlaylist', async (req, res) => {
   console.log(currPlaylistID);
   try {
     const response = await axios.delete(
@@ -217,7 +217,7 @@ app.delete('/unfollowPlaylist', async (req, res) => {
     );
     res.status(200).json(response.data);
   } catch (error) {
-    console.error('Error unfollowing playlist:', error.response.data);
+    console.error('Error deleting playlist:', error.response.data);
     res.status(error.response.status).json(error.response.data);
   }
 });
