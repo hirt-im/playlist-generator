@@ -2,7 +2,6 @@ import { Button } from '@chakra-ui/react';
 
 
 export default function DeletePlaylist(props){
-
     async function deletePlaylist(){
         try {
             const response = await fetch('http://localhost:3001/deletePlaylist', {
@@ -18,18 +17,10 @@ export default function DeletePlaylist(props){
         }
     }
 
-    if(!props.playlistDeleted){
-        return (
-            <Button width={370} size='lg' colorScheme="red" onClick={deletePlaylist}>
-                Unfollow Playlist
-            </Button>
-        );
-    }
-
-    return(
-        <Button width={370} size='lg' colorScheme="red" isDisabled={true}>
-            Playlist Unfollowed!
+    return (
+        <Button width={370} size='lg' colorScheme="red" onClick={deletePlaylist} isDisabled={props.playlistDeleted}>
+            {(!props.playlistDeleted ? 'Unfollow Playlist' : 'Playlist Unfollowed!')}
         </Button>
-      );
+    );
 };
 
