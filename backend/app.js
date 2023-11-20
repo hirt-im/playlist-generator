@@ -333,7 +333,6 @@ async function CreatePlaylist(name, songURIs){
         'Content-Type': 'application/json',
       }
     });
-
     return playlistId;
 
   } catch (error) {
