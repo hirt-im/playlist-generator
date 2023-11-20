@@ -1,17 +1,10 @@
 import { Component, useEffect, useState } from 'react'
 import './App.css'
-import SpotifySignIn from './SpotifySignIn'
-import SpotifySignOut from './SpotifySignOut'
-import GetAccessToken from './Getaccesstoken'
-import Playlist from './Playlist'
-import CreatePlaylistForm from './CreatePlaylistForm'
-import ToggleColorMode from './ToggleColorMode'
-import Directions from './Directions'
-import RainbowGlowingInput from './Rainbow'
-import RainbowGlowingBorderInput from './Rainbow'
+import Playlist from './components/Playlist'
+import CreatePlaylistForm from './components/CreatePlaylistForm/CreatePlaylistForm'
+import Directions from './components/Directions/Directions'
 import axios from 'axios';
-import LoadingButton from './LoadingButton'
-import DeletePlaylist from './DeletePlaylist'
+import DeletePlaylist from './components/DeletePlaylist'
 
 
 function App() {

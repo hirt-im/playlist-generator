@@ -1,4 +1,3 @@
-import './LoadingButton.css';
 import React, { useState, useEffect } from 'react';
 import { Button, Box } from '@chakra-ui/react';
 

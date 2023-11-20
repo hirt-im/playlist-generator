@@ -1,6 +1,6 @@
 import { Text, OrderedList, ListItem, Button, Collapse, Heading, Stack, Flex} from '@chakra-ui/react';
 import './Directions.css';
-import SpotifySignIn from './SpotifySignIn';
+import SpotifySignIn from '../SpotifySignIn';
 import { useState } from 'react';
 
 

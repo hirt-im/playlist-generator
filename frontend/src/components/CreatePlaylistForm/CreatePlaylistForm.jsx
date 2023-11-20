@@ -8,8 +8,7 @@ import {
     SliderMark,
   } from '@chakra-ui/react'
 import './CreatePlaylistForm.css';
-import Loading from './Loading';
-import LoadingButton from './LoadingButton';
+import LoadingButton from '../LoadingButton/LoadingButton';
 
 
 
