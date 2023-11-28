@@ -13,9 +13,9 @@ const cookieParser = require('cookie-parser');
 const SECRET_KEY = process.env.SECRET_KEY;
 const CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET;
 const CLIENT_ID = '642dc66687df41d5bd1a31d677e8f0a6';
-const REDIRECT_URI = 'http://localhost:3001/auth/callback';
+const REDIRECT_URI = 'http://hirt.im/SongGuru/auth/callback';
 const SPOTIFY_TOKEN_URL = 'https://accounts.spotify.com/api/token';
-const FRONTEND_URL = 'http://localhost:5173'
+const FRONTEND_URL = 'http://hirt.im/SongGuru'
 
 let fullTokenData = null;
 let accessToken = null;
@@ -82,7 +82,7 @@ app.get('/auth/callback', (req, res) => {
         console.log(accessToken)
 
         //redirect to frontend
-        res.redirect('http://localhost:5173');
+        res.redirect('http://hirt.im/SongGuru');
 
       } catch (error) {
         console.error('Error parsing Spotify token response:', error);

@@ -11,6 +11,7 @@ function App() {
   const [signedIn, setSignedIn] = useState(false);
   const [playlistID, setPlaylistID] = useState(null);
   const [playlistDeleted, setPlaylistDeleted] = useState(false);
+  const url = 'http://hirt.im/SongGuru';
 
   // Get Spotify access token from cookie and send to backend if it exists 
   useEffect(() => {
@@ -36,7 +37,7 @@ function App() {
   }, []); 
 
   async function storeToken(accessToken){
-    await axios.post('http://localhost:3001/storeToken', {
+    await axios.post('http://hirt.im/SongGuru/storeToken', {
       data: accessToken,
     })
   }
