@@ -61,7 +61,7 @@ app.get('/auth/callback', (req, res) => {
 
     response.on('data', (chunk) => {
       responseData += chunk;
-      console.log(reponseData);
+      console.log(responseData);
     });
 
     response.on('end', () => {
