@@ -1,6 +1,5 @@
 const express = require('express');
 const cors = require('cors'); 
-const session = require('express-session');
 const https = require('https');
 const http = require('http');
 const querystring = require('querystring');
@@ -23,12 +22,6 @@ let currPlaylistID = null;
 
 const app = express();
 app.use(cookieParser());
-
-app.use(session({
-  secret: SECRET_KEY,
-  resave: false,
-  saveUninitialized: true
-}));
 
 app.use(cors({
     origin: FRONTEND_URL, 
@@ -73,7 +66,6 @@ app.get('/auth/callback', (req, res) => {
     response.on('end', () => {
       try {
         const tokenData = JSON.parse(responseData);
-        req.session.accessToken = tokenData;
         fullTokenData = tokenData;
         accessToken = tokenData.access_token;
 
