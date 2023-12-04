@@ -70,7 +70,7 @@ app.get('/auth/callback', (req, res) => {
         accessToken = tokenData.access_token;
 
         // create cookie with access token data that expires after 1 hour
-        res.cookie('access_token', accessToken, {httpOnly: false, secure: false, maxAge: 3600000})
+        res.cookie('access_token', accessToken, {httpOnly: false, secure: false, maxAge: 3600000, sameSite: 'None'})
         console.log(accessToken)
 
         //redirect to frontend
