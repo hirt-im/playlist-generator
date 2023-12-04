@@ -71,7 +71,7 @@ app.get('/auth/callback', (req, res) => {
 
         // create cookie with access token data that expires after 1 hour
         res.cookie('access_token', accessToken, {httpOnly: false, secure: false, maxAge: 3600000, sameSite: 'None'})
-        console.log(accessToken)
+        console.log('access token: ', accessToken)
 
         //redirect to frontend
         res.redirect('http://hirt.im/SongGuru');
