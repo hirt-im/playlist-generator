@@ -61,11 +61,11 @@ app.get('/auth/callback', (req, res) => {
 
     response.on('data', (chunk) => {
       responseData += chunk;
+      console.log(reponseData);
     });
 
     response.on('end', () => {
       try {
-        console.log(reponseData);
         const tokenData = JSON.parse(responseData);
         fullTokenData = tokenData;
         accessToken = tokenData.access_token;
