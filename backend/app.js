@@ -65,6 +65,7 @@ app.get('/auth/callback', (req, res) => {
 
     response.on('end', () => {
       try {
+        console.log(reponseData);
         const tokenData = JSON.parse(responseData);
         fullTokenData = tokenData;
         accessToken = tokenData.access_token;
