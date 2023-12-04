@@ -14,7 +14,7 @@ const CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET;
 const CLIENT_ID = '642dc66687df41d5bd1a31d677e8f0a6';
 const REDIRECT_URI = 'https://songguru.onrender.com/auth/callback';
 const SPOTIFY_TOKEN_URL = 'https://accounts.spotify.com/api/token';
-const FRONTEND_URL = 'http://hirt.im/SongGuru'
+const FRONTEND_URL = 'https://hirt.im/SongGuru'
 
 let fullTokenData = null;
 let accessToken = null;
@@ -71,11 +71,11 @@ app.get('/auth/callback', (req, res) => {
         accessToken = tokenData.access_token;
 
         // create cookie with access token data that expires after 1 hour
-        res.cookie('access_token', accessToken, {httpOnly: false, secure: false, maxAge: 3600000, sameSite: 'None'})
+        res.cookie('access_token', accessToken, {httpOnly: false, secure: true, maxAge: 3600000, sameSite: 'None'})
         console.log('access token: ', accessToken)
 
         //redirect to frontend
-        res.redirect('http://hirt.im/SongGuru');
+        res.redirect('https://hirt.im/SongGuru');
 
       } catch (error) {
         console.error('Error parsing Spotify token response:', error);
