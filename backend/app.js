@@ -24,7 +24,7 @@ const app = express();
 app.use(cookieParser());
 
 app.use(cors({
-    origin: FRONTEND_URL, 
+    origin: 'https://hirt.im', 
     credentials: true,
 }));
 
