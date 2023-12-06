@@ -32,7 +32,7 @@ app.use(express.json());
 
 
 // Handle Spotify sign in and store access token
-app.get('/auth/callback', (req, res) => {
+app.get('/signIn', (req, res) => {
   // Extract the authorization code from the query parameters
   const authorizationCode = req.query.code;
   if (!authorizationCode) {
@@ -71,12 +71,10 @@ app.get('/auth/callback', (req, res) => {
         fullTokenData = tokenData;
         accessToken = tokenData.access_token;
 
-        // create cookie with access token data that expires after 1 hour
-        res.cookie('access_token', accessToken, {httpOnly: false, secure: true, maxAge: 3600000, domain: 'hirt.im', sameSite: 'None'})
+        res.json(accessToken);
+
         console.log('access token: ', accessToken)
 
-        //redirect to frontend
-        res.redirect('https://hirt.im/SongGuru');
 
       } catch (error) {
         console.error('Error parsing Spotify token response:', error);
@@ -97,7 +95,7 @@ app.get('/auth/callback', (req, res) => {
 
 
 // Get spotify song URIs from list of songs
-async function GetSongURIs(songList){
+async function GetSongURIs(songList, accessToken){
   let songURIs = [];
   await Promise.all(
     songList.map(async (song) => {
@@ -120,7 +118,7 @@ async function GetSongURIs(songList){
 
 
 // Create spotify playlist and add songs to it
-async function CreatePlaylist(name, songURIs){
+async function CreatePlaylist(name, songURIs, accessToken){
   try {
     const playlistData = {
       name: name,
@@ -162,6 +160,7 @@ const openai = new OpenAI({
 app.post('/createPlaylist', async (req, res) => {
   const prompt = req.body.prompt;
   const numSongs = req.body.numSongs;
+  const accessToken = req.body.accessToken
   const chatInput = 'Generate a playlist of songs that are on spotify. The theme of the playlist is: ' + prompt +'. The list should be numbered and include ' + numSongs + ' songs.';
   console.log(req.body.prompt);
 
@@ -186,8 +185,8 @@ app.post('/createPlaylist', async (req, res) => {
       })
       console.log(songs);
 
-      let songURIs = await GetSongURIs(songs);
-      let playlistID = await CreatePlaylist(prompt, songURIs);
+      let songURIs = await GetSongURIs(songs, accessToken);
+      let playlistID = await CreatePlaylist(prompt, songURIs, accessToken);
       res.json(playlistID);
     } 
       catch (error) {
@@ -205,7 +204,7 @@ app.delete('/deletePlaylist', async (req, res) => {
       `https://api.spotify.com/v1/playlists/${currPlaylistID}/followers`,
       {
         headers: {
-          Authorization: `Bearer ${accessToken}`,
+          Authorization: `Bearer ${req.body.accessToken}`,
         },
       }
     );

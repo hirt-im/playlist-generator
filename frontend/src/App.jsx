@@ -11,6 +11,7 @@ function App() {
   const [signedIn, setSignedIn] = useState(false);
   const [playlistID, setPlaylistID] = useState(null);
   const [playlistDeleted, setPlaylistDeleted] = useState(false);
+  const [accessToken, setAccessToken] = useState(null);
 
   // Get Spotify access token from cookie and send to backend if it exists 
   useEffect(() => {
@@ -27,10 +28,9 @@ function App() {
       return null;
     };
 
-    // Get access token and send to backend
     const accessToken = getCookie('access_token');
     if(accessToken){
-      storeToken(accessToken);
+      setAccessToken(accessToken);
       setSignedIn(true);
     }
   }, []); 

@@ -17,7 +17,7 @@ export default function Callback(){
             const navigate = useNavigate();
             navigate("/");
         })
-    })
+    }, [])
 
 
     function setCookie(accessToken){
