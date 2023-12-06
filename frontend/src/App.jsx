@@ -50,13 +50,21 @@ function App() {
         <Directions signedIn={signedIn} />
           : 
         <div className='playlist'>
-          <DeletePlaylist playlistID={playlistID} setPlaylistDeleted={setPlaylistDeleted} playlistDeleted={playlistDeleted} 
-          accessToken={accessToken} backendURL={backendURL} />       
-          <Playlist playlistID={playlistID} />
+          <DeletePlaylist playlistID={playlistID} 
+                          setPlaylistDeleted={setPlaylistDeleted} 
+                          playlistDeleted={playlistDeleted} 
+                          accessToken={accessToken} 
+                          backendURL={backendURL} />     
+                            
+          <Playlist       playlistID={playlistID} />
         </div>
       )}
-      <CreatePlaylistForm setPlaylistID={setPlaylistID} signedIn={signedIn} setPlaylistDeleted={setPlaylistDeleted} playlistDeleted={playlistDeleted} 
-        accessToken={accessToken} backendURL={backendURL} />
+      <CreatePlaylistForm setPlaylistID={setPlaylistID} 
+                          signedIn={signedIn} 
+                          setPlaylistDeleted={setPlaylistDeleted} 
+                          playlistDeleted={playlistDeleted} 
+                          accessToken={accessToken} 
+                          backendURL={backendURL} />
     </div>
   )
 }
