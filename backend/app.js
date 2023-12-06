@@ -24,7 +24,7 @@ const app = express();
 app.use(cookieParser());
 
 app.use(cors({
-    origin: 'https://hirt.im', 
+    origin: 'https://songguru.netlify.app', 
     credentials: true,
 }));
 
