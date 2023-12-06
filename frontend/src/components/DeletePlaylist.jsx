@@ -3,13 +3,14 @@ import { Button } from '@chakra-ui/react';
 
 export default function DeletePlaylist(props){
     async function deletePlaylist(){
+        let accessToken = props.accessToken;
         try {
             const response = await fetch('https://songguru.onrender.com/deletePlaylist', {
               method: 'DELETE',
               headers: {
                 'Content-Type': 'application/json',
               },
-              body: JSON.stringify(props.accessToken)
+              body: JSON.stringify({accessToken})
             });
             props.setPlaylistDeleted(response.ok);
           }
