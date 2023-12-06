@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import './Callback.css';
-import { useNavigate } from 'react-router-dom';
 
 
 export default function Callback(){
@@ -14,8 +13,7 @@ export default function Callback(){
             console.log(data);
             setCookie(data);
 
-            const navigate = useNavigate();
-            navigate("/");
+            window.location.href = 'https://songguru.netlify.app/';
         })
     }, [])
 
@@ -29,5 +27,5 @@ export default function Callback(){
     return(
         <div id='callback'>Callback page</div>
     );
-    
+
 }
