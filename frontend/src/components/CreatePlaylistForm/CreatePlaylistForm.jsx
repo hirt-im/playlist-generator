@@ -33,7 +33,7 @@ export default function CreatePlaylistForm(props){
         e.preventDefault();
         setLoading(true);
         let accessToken = props.accessToken;
-        const result = await fetch('https://songguru.onrender.com/createPlaylist', {
+        const result = await fetch(props.backendURL + 'createPlaylist', {
               method: 'POST',
               body: JSON.stringify({prompt, numSongs, accessToken}),
               headers: { 'Content-Type': 'application/json' },

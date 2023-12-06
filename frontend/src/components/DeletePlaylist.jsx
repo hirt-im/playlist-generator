@@ -5,7 +5,7 @@ export default function DeletePlaylist(props){
     async function deletePlaylist(){
         let accessToken = props.accessToken;
         try {
-            const response = await fetch('https://songguru.onrender.com/deletePlaylist', {
+            const response = await fetch(props.backendURL + 'deletePlaylist', {
               method: 'DELETE',
               headers: {
                 'Content-Type': 'application/json',

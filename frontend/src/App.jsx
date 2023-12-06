@@ -13,6 +13,9 @@ function App() {
   const [playlistDeleted, setPlaylistDeleted] = useState(false);
   const [accessToken, setAccessToken] = useState(null);
 
+  const frontendURL = 'https://songguru.netlify.app/';
+  const backendURL = 'https://songguru.onrender.com/';
+
   // Get Spotify access token from cookie and send to backend if it exists 
   useEffect(() => {
     // Function to get the value of a cookie by its name
@@ -35,11 +38,11 @@ function App() {
     }
   }, []); 
 
-  async function storeToken(accessToken){
-    await axios.post('https://songguru.onrender.com/storeToken', {
-      data: accessToken,
-    })
-  }
+  // async function storeToken(accessToken){
+  //   await axios.post('https://songguru.onrender.com/storeToken', {
+  //     data: accessToken,
+  //   })
+  // }
 
   return (
     <div className='container'>
@@ -47,12 +50,13 @@ function App() {
         <Directions signedIn={signedIn} />
           : 
         <div className='playlist'>
-          <DeletePlaylist playlistID={playlistID} setPlaylistDeleted={setPlaylistDeleted} playlistDeleted={playlistDeleted} accessToken={accessToken} />       
+          <DeletePlaylist playlistID={playlistID} setPlaylistDeleted={setPlaylistDeleted} playlistDeleted={playlistDeleted} 
+          accessToken={accessToken} backendURL={backendURL} />       
           <Playlist playlistID={playlistID} />
         </div>
       )}
       <CreatePlaylistForm setPlaylistID={setPlaylistID} signedIn={signedIn} setPlaylistDeleted={setPlaylistDeleted} playlistDeleted={playlistDeleted} 
-        accessToken={accessToken} />
+        accessToken={accessToken} backendURL={backendURL} />
     </div>
   )
 }
