@@ -1,1 +1,2 @@
-1. make backend and frontend urls constants to pass as props
+1. Change or remove description
+2. Improve styling
