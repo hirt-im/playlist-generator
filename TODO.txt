@@ -15,3 +15,15 @@ Possible feature:
         i. would need to generate large list and then filter by play count using spotify api
             a. even then, it's not guaranteed chatgpt would give enough songs for the obscurity value
 
+
+REDO SIGNIN AND AUTHORIZATION:
+make frontend callback page
+callback page makes get request to backend to get access token
+frontend stores access token in cookie
+
+
+callback page
+extract code from url sent by spotify
+give code to backend route to exchange for access token
+backend route returns access token
+store access token in cookie
